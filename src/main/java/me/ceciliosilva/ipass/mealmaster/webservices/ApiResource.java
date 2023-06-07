@@ -5,12 +5,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("meals")
-public class MealResource {
-
+@Path("")
+public class ApiResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
-    public String getMeal() {
-        return "Meal";
+    public String getStatus() {
+        return "OK";
     }
 }
