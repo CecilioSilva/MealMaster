@@ -57,8 +57,8 @@ public class AuthResource {
     }
 
     private static String validateUsername(String username){
-        if(username.length() < 3 || username.length() > 15){
-            return "Username should be between 3 and 15 characters";
+        if(username.length() < 3 || username.length() > 40){
+            return "Username should be between 3 and 40 characters";
         }
 
         return "";
@@ -73,7 +73,7 @@ public class AuthResource {
         return "";
     }
 
-    private static String createToken(String email) {
+    private static String createToken(String email, String name) {
         Logger.debug("AuthResource", "Generating JWT for", email);
 
         try {
@@ -87,6 +87,7 @@ public class AuthResource {
             return Jwts.builder()
                     .setSubject(email)
                     .setExpiration(expiration.getTime())
+                    .claim("name", name)
                     .signWith(key, SignatureAlgorithm.HS512)
                     .compact();
 
@@ -101,7 +102,6 @@ public class AuthResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createUser(String jsonBody) {
-        System.out.println(jsonBody);
         try {
             // Reads request body for data
             JsonObject requestBody = ApiHelper.requestBodyReader(jsonBody);
@@ -162,7 +162,7 @@ public class AuthResource {
             User user = User.authenticateUser(email, password);
 
             // Generates JWT token with email as payload
-            String token = createToken(user.getEmail());
+            String token = createToken(user.getEmail(), user.getName());
 
             if(token != null){
                 // If token gets made return 200 response
@@ -171,10 +171,8 @@ public class AuthResource {
 
             // if token failed return 500 response
             return ApiHelper.simpleMsgResponse(Response.Status.INTERNAL_SERVER_ERROR, "Couldn't generate JWT");
-        } catch (PasswordIncorrectException e){
-            return ApiHelper.simpleMsgResponse(Response.Status.UNAUTHORIZED, e.getMessage());
-        } catch (UserDoesNotExistException e){
-            return ApiHelper.simpleMsgResponse(Response.Status.BAD_REQUEST, e.getMessage());
+        } catch (PasswordIncorrectException | UserDoesNotExistException e){
+            return ApiHelper.simpleMsgResponse(Response.Status.UNAUTHORIZED, "Password or username incorrect");
         }
     }
 }
