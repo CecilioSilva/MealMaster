@@ -15,8 +15,9 @@ public class User implements Serializable, Principal {
     private String name;
     private String email;
     private String password;
+    private ArrayList<Ingredient> ingredients = new ArrayList<>();
     private ArrayList<Integer> favorites;
-    private ArrayList<ShoppingList> shoppingLists;
+    private ArrayList<ShoppingList> shoppingLists = new ArrayList<>();
 
     private static ArrayList<User> users;
 
@@ -71,11 +72,6 @@ public class User implements Serializable, Principal {
         DataHelper.saveObject(saveFileName, users);
     }
 
-    public static ArrayList<User> getUsers(){
-        loadUsers();
-        return users;
-    }
-
     public static boolean registerUser(String name, String email, String password){
         Logger.info("User", "Registering user - ", email);
         loadUsers();
@@ -119,5 +115,26 @@ public class User implements Serializable, Principal {
 
     public String getName() {
         return this.name;
+    }
+
+    // Ingredients
+    public ArrayList<Ingredient> getIngredients(){
+        return this.ingredients;
+    }
+    public void addIngredient(Ingredient ingredient){
+        this.ingredients.add(ingredient);
+        saveUsers();
+    }
+    public void removeIngredient(String id){
+        ArrayList<Ingredient> filteredIngredients = new ArrayList<>();
+
+        for (Ingredient ing: this.ingredients){
+            if(!ing.getId().equals(id)){
+                filteredIngredients.add(ing);
+            }
+        }
+
+        this.ingredients = filteredIngredients;
+        saveUsers();
     }
 }

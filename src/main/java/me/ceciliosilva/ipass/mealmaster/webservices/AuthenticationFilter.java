@@ -1,12 +1,12 @@
-package me.ceciliosilva.ipass.setup;
+package me.ceciliosilva.ipass.mealmaster.webservices;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import me.ceciliosilva.ipass.mealmaster.model.User;
+import me.ceciliosilva.ipass.mealmaster.utils.Logger;
 import me.ceciliosilva.ipass.mealmaster.utils.MySecurityContext;
-import me.ceciliosilva.ipass.mealmaster.webservices.AuthResource;
 
 import javax.annotation.Priority;
 import javax.ws.rs.Priorities;
@@ -20,9 +20,11 @@ import javax.ws.rs.ext.Provider;
 public class AuthenticationFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext requestCtx) {
+        // Checks if user is logged in and valid
 
         boolean isSecure = requestCtx.getSecurityContext().isSecure();
         String scheme = requestCtx.getUriInfo().getRequestUri().getScheme();
+
         // Users are treated as guests, unless a valid JWT is provided
         MySecurityContext msc = new MySecurityContext(null, scheme);
         String authHeader = requestCtx.getHeaderString(HttpHeaders.AUTHORIZATION);
@@ -39,7 +41,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                 msc = new MySecurityContext(User.getUserByEmail(user), scheme);
 
             } catch (JwtException | IllegalArgumentException e) {
-                System.out.println("Invalid JWT, processing as guest!");
+                Logger.error("Authentication Filter", "Invalid JWT, processing as guest!");
             }
         }
 

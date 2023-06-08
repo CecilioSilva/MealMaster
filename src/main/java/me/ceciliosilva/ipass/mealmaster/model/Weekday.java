@@ -1,9 +1,10 @@
 package me.ceciliosilva.ipass.mealmaster.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Weekday {
+public class Weekday implements Serializable {
     private Date date;
     private String description;
     private ArrayList<Meal> meals;

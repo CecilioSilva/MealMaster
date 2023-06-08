@@ -1,6 +1,8 @@
 package me.ceciliosilva.ipass.mealmaster.model;
 
-public class ShoppingList {
+import java.io.Serializable;
+
+public class ShoppingList implements Serializable {
     private boolean isPublic;
 
     public ShoppingList(boolean isPublic) {

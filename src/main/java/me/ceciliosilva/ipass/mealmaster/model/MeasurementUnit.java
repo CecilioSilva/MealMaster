@@ -1,6 +1,8 @@
 package me.ceciliosilva.ipass.mealmaster.model;
 
-public enum MeasurementUnit {
+import java.io.Serializable;
+
+public enum MeasurementUnit implements Serializable {
     gram,
     lbs,
     milliliter,

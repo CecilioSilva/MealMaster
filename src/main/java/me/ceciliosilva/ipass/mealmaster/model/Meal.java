@@ -1,6 +1,8 @@
 package me.ceciliosilva.ipass.mealmaster.model;
 
-public class Meal {
+import java.io.Serializable;
+
+public class Meal implements Serializable {
     private Integer id;
     private String name;
     private String image;

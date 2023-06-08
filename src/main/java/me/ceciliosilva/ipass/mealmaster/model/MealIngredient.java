@@ -1,6 +1,8 @@
 package me.ceciliosilva.ipass.mealmaster.model;
 
-public class MealIngredient {
+import java.io.Serializable;
+
+public class MealIngredient implements Serializable {
     private double amount;
     private boolean bought;
     private MeasurementUnit measurementUnit;
@@ -12,4 +14,5 @@ public class MealIngredient {
         this.measurementUnit = measurementUnit;
         this.ingredient = ingredient;
     }
+
 }
