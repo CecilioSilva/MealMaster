@@ -16,7 +16,7 @@ function getIngredients(){
                     ingredientContainer.innerHTML += `
                     <div class="ingredient-card">
                       <h2>${ingredient.name}</h2>
-                      <img src="https://placehold.co/250x250" alt="image" class="card-image">
+                      <img src="${ingredient.image}" alt="image" class="card-image">
                       <p class="card-description">${ingredient.description}</p>
                     </div>
                     `
