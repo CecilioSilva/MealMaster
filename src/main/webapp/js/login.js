@@ -1,19 +1,8 @@
 const loginForm = document.getElementById("login-form");
 const errorMsg = document.getElementById("error-msg");
-const statusMsg = document.getElementById("status-msg");
+
 const loginButton = document.getElementById("login-button");
 
-function getStatusMessage() {
-  // Clears status message
-  statusMsg.innerHTML = "";
-
-  // Gets the search string from the url
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const statusMessage = urlParams.get("status");
-
-  statusMsg.innerHTML = statusMessage;
-}
 
 function login() {
   let formData = new FormData(loginForm);

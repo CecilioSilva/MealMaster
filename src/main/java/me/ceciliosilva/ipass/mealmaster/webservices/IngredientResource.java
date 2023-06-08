@@ -79,7 +79,6 @@ public class IngredientResource {
                 return ApiHelper.simpleMsgResponse(Response.Status.INTERNAL_SERVER_ERROR, err.getMessage());
             }
         }
-
         return ApiHelper.simpleMsgResponse(Response.Status.INTERNAL_SERVER_ERROR, "Cant find user");
     }
 }

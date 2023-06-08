@@ -45,3 +45,20 @@ function checkLoginStatus() {
         window.location.replace("/login.html?status=Session expired");
     }
 }
+
+function getAuthorizationHeader(){
+    return {
+        "Authorization": `Bearer ${window.localStorage.getItem("userJWT")}`
+    }
+}
+
+function getStatusMessage() {
+    const statusMsg = document.getElementById("status-msg");
+    // Clears status message
+    statusMsg.innerHTML = "";
+
+    // Gets the search string from the url
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    statusMsg.innerHTML = urlParams.get("status");
+}
