@@ -25,6 +25,54 @@ public class AuthResource {
 
     final static private Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
+    private static String validatePassword(String password){
+
+        int minLength = 8;
+        if(password.length() < minLength){
+            return "Password should be at least 8 characters long";
+        }
+
+        String upperChars = "(.*[A-Z].*)";
+        if(!password.matches(upperChars)){
+            return "Password should have an uppercase letter";
+        }
+
+        String lowerChars = "(.*[a-z].*)";
+        if(!password.matches(lowerChars)){
+            return "Password should have a lowercase letter";
+        }
+
+        String numbers = "(.*[0-9].*)";
+        if(!password.matches(numbers)){
+            return "Password should have a number";
+        }
+
+        String specialChars = "(.*[@,#,$,%,.,!,^,*].*$)";
+        if (!password.matches(specialChars))
+        {
+            return "Password must have atleast one special character among @#$%";
+        }
+
+        return "";
+    }
+
+    private static String validateUsername(String username){
+        if(username.length() < 3 || username.length() > 15){
+            return "Username should be between 3 and 15 characters";
+        }
+
+        return "";
+    }
+
+    private static String validateEmail(String email){
+        String emailRegex = "^(.+)@(.+)$";
+        if(!email.matches(emailRegex)){
+            return "Invalid email";
+        }
+
+        return "";
+    }
+
     private static String createToken(String email) {
         Logger.debug("AuthResource", "Generating JWT for", email);
 
@@ -62,6 +110,24 @@ public class AuthResource {
             String name = requestBody.getString("name");
             String email = requestBody.getString("email");
             String password = requestBody.getString("password");
+
+            // Validates password
+            String isPwdValid = validatePassword(password);
+            if(!isPwdValid.equals("")){
+                return ApiHelper.simpleMsgResponse(Response.Status.BAD_REQUEST, isPwdValid);
+            }
+
+            // Validates user name
+            String isUsrValid = validateUsername(password);
+            if(!isUsrValid.equals("")){
+                return ApiHelper.simpleMsgResponse(Response.Status.BAD_REQUEST, isUsrValid);
+            }
+
+            // Validates email
+            String isEmValid = validateEmail(email);
+            if(!isEmValid.equals("")){
+                return ApiHelper.simpleMsgResponse(Response.Status.BAD_REQUEST, isEmValid);
+            }
 
             // Tries to register user
             boolean success = User.registerUser(name, email, password);
