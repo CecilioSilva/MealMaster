@@ -11,7 +11,7 @@ public class MealTest {
 
     @BeforeEach
     public void setup(){
-        meal = new Meal(1, "Lasagna", "/https", "4", "food");
+        meal = new Meal("Lasagna", "/https", 4, "food");
     }
 
     @Test

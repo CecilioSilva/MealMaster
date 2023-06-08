@@ -43,7 +43,7 @@ public class Ingredient implements Serializable {
         map.put("id", this.id);
         map.put("name", this.name);
         map.put("description", this.description);
-        map.put("image", this.description);
+        map.put("image", this.image);
         return map;
     }
 }

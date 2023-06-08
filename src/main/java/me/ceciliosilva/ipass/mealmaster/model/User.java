@@ -16,6 +16,7 @@ public class User implements Serializable, Principal {
     private String email;
     private String password;
     private ArrayList<Ingredient> ingredients = new ArrayList<>();
+    private ArrayList<Meal> meals = new ArrayList<>();
     private ArrayList<Integer> favorites;
     private ArrayList<ShoppingList> shoppingLists = new ArrayList<>();
 
@@ -135,6 +136,33 @@ public class User implements Serializable, Principal {
         }
 
         this.ingredients = filteredIngredients;
+        saveUsers();
+    }
+
+    // Meal
+    public ArrayList<Meal> getMeals(){
+        Meal testMeal = new Meal("Lasagna", "", 4, "italian dish");
+        Ingredient salt = new Ingredient("salt", "Rock", "");
+        MealIngredient mealIngredient = new MealIngredient(100, false, MeasurementUnit.gram, salt);
+        testMeal.addIngredient(mealIngredient);
+
+        this.meals.add(testMeal);
+        return this.meals;
+    }
+    public void addMeal(Meal meal){
+        this.meals.add(meal);
+        saveUsers();
+    }
+    public void removeMeal(String id){
+        ArrayList<Meal> filteredMeals = new ArrayList<>();
+
+        for (Meal meal: this.meals){
+            if(!meal.getId().equals(id)){
+                filteredMeals.add(meal);
+            }
+        }
+
+        this.meals = filteredMeals;
         saveUsers();
     }
 }
