@@ -53,6 +53,7 @@ public class AuthResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createUser(String jsonBody) {
+        System.out.println(jsonBody);
         try {
             // Reads request body for data
             JsonObject requestBody = ApiHelper.requestBodyReader(jsonBody);

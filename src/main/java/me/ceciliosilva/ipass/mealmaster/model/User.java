@@ -5,12 +5,7 @@ import me.ceciliosilva.ipass.mealmaster.exceptions.UserDoesNotExistException;
 import me.ceciliosilva.ipass.mealmaster.utils.DataHelper;
 import me.ceciliosilva.ipass.mealmaster.utils.Logger;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -40,7 +35,7 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(name, user.name) && Objects.equals(email, user.email) && Objects.equals(password, user.password);
+        return Objects.equals(email, user.email);
     }
 
     @Override
