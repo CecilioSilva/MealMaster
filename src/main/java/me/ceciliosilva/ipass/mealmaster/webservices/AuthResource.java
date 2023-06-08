@@ -23,7 +23,7 @@ import java.util.Calendar;
 @Path("auth")
 public class AuthResource {
 
-    final static private Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
+    final static public Key key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
     private static String validatePassword(String password){
 
@@ -88,6 +88,7 @@ public class AuthResource {
                     .setSubject(email)
                     .setExpiration(expiration.getTime())
                     .claim("name", name)
+                    .claim("role", "user")
                     .signWith(key, SignatureAlgorithm.HS512)
                     .compact();
 

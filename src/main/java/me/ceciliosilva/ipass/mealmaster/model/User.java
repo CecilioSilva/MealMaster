@@ -6,10 +6,11 @@ import me.ceciliosilva.ipass.mealmaster.utils.DataHelper;
 import me.ceciliosilva.ipass.mealmaster.utils.Logger;
 
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class User implements Serializable {
+public class User implements Serializable, Principal {
     private static String saveFileName = "users.obj";
     private String name;
     private String email;
@@ -24,6 +25,15 @@ public class User implements Serializable {
         this.email = email;
         this.password = password;
         this.favorites = favorites;
+    }
+    public static User getUserByEmail(String email) {
+        for(User user: users){
+            if(user.email.equals(email)){
+                return user;
+            }
+        }
+
+        return null;
     }
 
     public void addShoppingList(ShoppingList shoppingList) {
