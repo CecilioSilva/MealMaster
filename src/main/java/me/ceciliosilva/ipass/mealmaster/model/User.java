@@ -17,17 +17,17 @@ public class User implements Serializable, Principal {
     private String password;
     private ArrayList<Ingredient> ingredients = new ArrayList<>();
     private ArrayList<Meal> meals = new ArrayList<>();
-    private ArrayList<Integer> favorites;
-    private ArrayList<ShoppingList> shoppingLists = new ArrayList<>();
+    private ArrayList<String> favorites;
 
     private static ArrayList<User> users;
 
-    public User(String name, String email, String password, ArrayList<Integer> favorites) {
+    public User(String name, String email, String password, ArrayList<String> favorites) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.favorites = favorites;
     }
+
     public static User getUserByEmail(String email) {
         for(User user: users){
             if(user.email.equals(email)){
@@ -36,10 +36,6 @@ public class User implements Serializable, Principal {
         }
 
         return null;
-    }
-
-    public void addShoppingList(ShoppingList shoppingList) {
-        shoppingLists.add(shoppingList);
     }
 
     @Override
