@@ -145,12 +145,6 @@ public class User implements Serializable, Principal {
 
     // Meal
     public ArrayList<Meal> getMeals(){
-        Meal testMeal = new Meal("Lasagna", "", 4, "italian dish");
-        Ingredient salt = new Ingredient("salt", "Rock", "");
-        MealIngredient mealIngredient = new MealIngredient(100, false, MeasurementUnit.gram, salt);
-        testMeal.addIngredient(mealIngredient);
-
-        this.meals.add(testMeal);
         return this.meals;
     }
     public void addMeal(Meal meal){
