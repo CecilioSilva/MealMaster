@@ -138,6 +138,14 @@ public class User implements Serializable, Principal {
         this.ingredients = filteredIngredients;
         saveUsers();
     }
+    public Ingredient getIngredientById(String ingredientId) {
+        for (Ingredient ing: this.ingredients){
+            if(ing.getId().equals(ingredientId)){
+                return ing;
+            }
+        }
+        return null;
+    }
 
     // Meal
     public ArrayList<Meal> getMeals(){
