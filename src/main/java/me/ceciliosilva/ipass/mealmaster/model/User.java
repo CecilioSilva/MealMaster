@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class User implements Serializable, Principal {
+    static final long serialVersionUID = 1L;
     private static String saveFileName = "users.obj";
     private String name;
     private String email;

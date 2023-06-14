@@ -7,6 +7,8 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class Meal implements Serializable {
+    static final long serialVersionUID = 1L;
+
     private String id;
     private String name;
     private String image;

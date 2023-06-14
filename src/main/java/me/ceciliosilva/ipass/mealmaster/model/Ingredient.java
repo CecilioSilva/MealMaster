@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class Ingredient implements Serializable {
+    static final long serialVersionUID = 1L;
 
     private String id;
     private String name;

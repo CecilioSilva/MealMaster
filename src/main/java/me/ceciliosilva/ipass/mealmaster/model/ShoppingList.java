@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ShoppingList implements Serializable {
+    static final long serialVersionUID = 1L;
+
     private boolean isPublic;
     private ArrayList<Weekday> days = new ArrayList<>();
 

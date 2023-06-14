@@ -6,6 +6,8 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class MealIngredient implements Serializable {
+    static final long serialVersionUID = 1L;
+
     private String id;
     private double amount;
     private boolean bought;

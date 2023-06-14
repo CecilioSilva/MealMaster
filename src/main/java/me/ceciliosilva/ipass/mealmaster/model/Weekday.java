@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Weekday implements Serializable {
+    static final long serialVersionUID = 1L;
+
     private Date date;
     private String description;
     private ArrayList<Meal> meals;
