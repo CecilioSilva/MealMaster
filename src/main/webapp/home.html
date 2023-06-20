@@ -11,22 +11,26 @@
   </head>
   <body>
     <header>
-      <nav>
-        <p>MealMaster</p>
-        <ul>
-          <li><a href="/">Landingpage</a></li>
-          <li><a href="/home.html">Home</a></li>
-          <li><button id="logout-button" onclick="logout()">Logout</button></li>
+      <nav class="nav-bar">
+        <a href="/home.html">
+          <img src="/images/logo.svg" alt="Logo" class="nav-logo"/>
+        </a>
+        <ul class="nav-links">
+          <li class="nav-link"><a href="/">Landingpage</a></li>
         </ul>
+        <div class="nav-actions">
+          <button id="logout-button" onclick="logout()" class="nav-button btn">Logout</button>
+        </div>
       </nav>
     </header>
-    <main><h1>Homepage</h1><br>
-      <a href="/add/ingredient.html">Add ingredient</a><br>
-      <a href="/list/ingredients.html">See ingredient</a><br>
-      <a href="/add/meal.html">Add Meal</a><br>
+    <main class="container">
+      <h1 class="page-title">Homepage</h1>
+      <a href="/add/ingredient.html">Add ingredient</a>
+      <a href="/list/ingredients.html">See ingredient</a>
+      <a href="/add/meal.html">Add Meal</a>
     </main>
-    <footer>
-      <p>Cecilio Silva Monteiro - 2023</p>
+    <footer class="footer">
+      <p class="copyright">MealMaster - Cecilio Silva Monteiro - 2023</p>
     </footer>
   </body>
 </html>

@@ -12,12 +12,16 @@
 <body>
 <header>
     <nav class="nav-bar">
-        <img src="/images/logo.svg" alt="Logo" class="nav-logo"/>
-        <ul class="nav-links">
+        <a href="/home.html">
+            <img src="/images/logo.svg" alt="Logo" class="nav-logo"/>
+        </a>
+        <ul class="nav-links" id="nav-links">
             <li class="nav-link"><a href="/">Landingpage</a></li>
             <li class="nav-link"><a href="/home.html">Home</a></li>
         </ul>
-        <button id="logout-button" onclick="logout()" class="nav-button btn">Logout</button>
+        <div class="nav-actions">
+            <button id="logout-button" onclick="logout()" class="nav-button btn">Logout</button>
+        </div>
     </nav>
 </header>
 <main class="container">

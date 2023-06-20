@@ -10,15 +10,21 @@
     <link rel="stylesheet" href="/styles/style.css">
   </head>
   <body>
-    <header>
-      <nav>
-        <p>MealMaster</p>
-      </nav>
-    </header>
-    <main>
-      <p id="error-msg"></p>
-      <h1>Register</h1>
-      <form id="register-form">
+  <header>
+    <nav class="nav-bar">
+      <a href="/">
+        <img src="/images/logo.svg" alt="Logo" class="nav-logo"/>
+      </a>
+      <div class="nav-actions">
+        <a id="login-button" href="login.html" class="nav-button btn">Login</a>
+      </div>
+    </nav>
+  </header>
+    <main class="container">
+      <p id="error-msg" class="error-msg"></p>
+      <p id="status-msg" class="status-msg"></p>
+      <h1 class="page-title">Register</h1>
+      <form id="register-form" class="register-form">
         <label for="name">Name</label><br /><input
           type="text"
           name="name"
@@ -39,12 +45,14 @@
           name="repeatPassword"
           id="repeatPassword"
         /><br /><br />
-        <input type="button" value="register" id="register-button" />
+        <input type="button" value="Register" id="register-button" />
       </form>
-      <a href="/login.html">Login</a>
+      <p class="form-footer">
+        Already have an account <a href="/login.html" class="extra-link">Login</a> here!
+      </p>
     </main>
-    <footer>
-      <p>Cecilio Silva Monteiro - 2023</p>
+    <footer class="footer">
+      <p class="copyright">MealMaster - Cecilio Silva Monteiro - 2023</p>
     </footer>
   </body>
 </html>

@@ -10,16 +10,21 @@
     <link rel="stylesheet" href="/styles/style.css">
   </head>
   <body>
-    <header>
-      <nav>
-        <p>MealMaster</p>
-      </nav>
-    </header>
-    <main>
-      <p id="error-msg"></p>
-      <p id="status-msg"></p>
-      <h1>Login</h1>
-      <form id="login-form">
+  <header>
+    <nav class="nav-bar">
+      <a href="/">
+        <img src="/images/logo.svg" alt="Logo" class="nav-logo"/>
+      </a>
+      <div class="nav-actions">
+        <a id="register-button" href="register.html" class="nav-button btn">Register</a>
+      </div>
+    </nav>
+  </header>
+    <main class="container">
+      <p id="error-msg" class="error-msg"></p>
+      <p id="status-msg" class="status-msg"></p>
+      <h1 class="page-title">Login</h1>
+      <form id="login-form" class="login-form">
         <label for="email">E-mail</label><br /><input
           type="email"
           name="email"
@@ -32,10 +37,12 @@
         /><br /><br />
         <input type="button" value="Login" id="login-button" />
       </form>
-      <a href="/register.html">Register</a>
+      <p class="form-footer">
+      No account yet <a href="/register.html" class="extra-link">Register</a> here!
+      </p>
     </main>
-    <footer>
-      <p>Cecilio Silva Monteiro - 2023</p>
+    <footer class="footer">
+      <p class="copyright">MealMaster - Cecilio Silva Monteiro - 2023</p>
     </footer>
   </body>
 </html>

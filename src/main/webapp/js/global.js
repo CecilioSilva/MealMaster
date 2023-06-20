@@ -8,9 +8,9 @@ function logout(){
 
 function parseJwt(token) {
     // Parses the jwt token to object
-    var base64Url = token.split(".")[1];
-    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    var jsonPayload = decodeURIComponent(
+    const base64Url = token.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const jsonPayload = decodeURIComponent(
         window
             .atob(base64)
             .split("")
@@ -23,16 +23,15 @@ function parseJwt(token) {
     return JSON.parse(jsonPayload);
 }
 
-function checkLoginStatus() {
-    // Checks if user is authenticated
+function isLoggedIn() {
+    // Checks if user is logged in
 
     // Gets users jwt from local storage
     const userJWT = window.localStorage.getItem("userJWT");
 
     // If user does not have a jwt (not authenticated) redirect to login page
     if(!userJWT){
-        window.location.replace("/login.html")
-        return;
+        return false;
     }
 
     const user = parseJwt(userJWT);
@@ -40,9 +39,21 @@ function checkLoginStatus() {
     // Checks if the jwt is still valid
     let currentTimeInSeconds = new Date().getTime() / 1000;
     if(currentTimeInSeconds > user.exp){
-        // if token is expired remove it and redirect to login page
+        // if token is expired remove it
         window.localStorage.removeItem("userJWT");
-        window.location.replace("/login.html?status=Session expired");
+        return false;
+    }
+
+    return true;
+}
+
+
+function checkLoginStatus() {
+    // Checks if user is authenticated
+    const loggedIn = isLoggedIn();
+
+    if(!loggedIn){
+        window.location.replace("/login.html?status=Not Logged in")
     }
 }
 
