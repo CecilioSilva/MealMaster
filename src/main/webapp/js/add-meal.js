@@ -1,2 +1,0 @@
-checkLoginStatus();
-getStatusMessage();

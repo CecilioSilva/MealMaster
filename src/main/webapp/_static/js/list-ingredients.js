@@ -2,8 +2,6 @@ checkLoginStatus();
 const ingredientContainer = document.getElementById("ingredients-container");
 
 function getIngredients(){
-
-
     fetch("/api/ingredients", {
         method: "GET",
         headers: {

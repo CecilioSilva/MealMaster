@@ -1,15 +1,17 @@
-.ingredients-container {
+.meals-container {
     display: flex;
     gap: 4rem;
     flex-wrap: wrap;
+
 }
 
-.ingredient-card{
+.meals-card{
     text-align: center;
     background: var(--secodary-color);
     min-width: 250px;
     padding: 1rem;
     border-radius: .2rem;
+    margin: 0 auto;
 }
 
 .card-image{

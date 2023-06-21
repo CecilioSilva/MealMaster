@@ -59,9 +59,9 @@ public class MealResource {
                     JsonObject jsn = jsonValue.asJsonObject();
                     meal.addIngredient(new MealIngredient(
                             jsn.getJsonNumber("amount").doubleValue(),
-                            jsn.getBoolean("bought"),
-                            MeasurementUnit.valueOf(jsn.getString("measurementUnit")),
-                            current.getIngredientById(jsn.getString("ingredient"))
+                            false,
+                            MeasurementUnit.valueOf(jsn.getString("unit")),
+                            current.getIngredientById(jsn.getString("id"))
                     ));
                 });
 
