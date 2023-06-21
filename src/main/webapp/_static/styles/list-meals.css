@@ -22,4 +22,5 @@
 
 .card-description {
     text-align: left;
+    max-width: 200px;
 }
