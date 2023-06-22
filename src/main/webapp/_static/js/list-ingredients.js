@@ -12,7 +12,7 @@ function getIngredients(){
         if (res.ok) {
             // If request was a success serialize the result into JSON
             res.json().then(data => {
-                // After 500 ms delay render the cards
+                // After 100 ms delay render the cards
                setTimeout(() => {
                    // Clear the ingredient container
                    ingredientContainer.innerHTML = "";
@@ -27,7 +27,7 @@ function getIngredients(){
                     </div>
                     `
                    })
-               }, 500)
+               }, 100)
             });
             return
         }
@@ -36,8 +36,9 @@ function getIngredients(){
     }).catch(err => {
         // Set the error banner to given error
         err.json().then(data => {
+            data.msg ??= undefined;
             errorMsg.innerHTML = data.msg;
-        }).catch(err => {
+        }).catch(_ => {
             errorMsg.innerHTML = "Error getting ingredients"
         })
     });

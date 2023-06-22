@@ -8,6 +8,7 @@
     <script src="/_static/js/global.js" defer></script>
     <script src="/_static/js/home.js" defer></script>
     <link rel="stylesheet" href="/_static/styles/style.css">
+    <link rel="stylesheet" href="/_static/styles/home.css">
   </head>
   <body>
     <header>
@@ -27,10 +28,21 @@
       <h1 class="page-title">Homepage</h1>
       <p id="error-msg" class="error-msg"></p>
       <p id="status-msg" class="status-msg"></p>
-      <a href="/add/ingredient.html">Add ingredient</a>
-      <a href="/list/ingredients.html">See ingredient</a>
-      <a href="/add/meal.html">Add Meal</a>
-      <a href="/list/meals.html">See Meals</a>
+
+      <div class="icon-container">
+        <a href="/add/ingredient.html" aria-label="Go to add ingredient page" >
+          <img src="/_static/images/add-ingredients.svg" alt="Add ingredient icon" class="home-icon">
+        </a>
+        <a href="/list/ingredients.html" aria-label="Go to ingredients page" >
+          <img src="/_static/images/ingredients.svg" alt="See ingredient icon" class="home-icon">
+        </a>
+        <a href="/add/meal.html" aria-label="Go to add meal page" >
+          <img src="/_static/images/add-meal.svg" alt="Add meal icon" class="home-icon">
+        </a>
+        <a href="/list/meals.html" aria-label="Go to meals page" >
+          <img src="/_static/images/meals.svg" alt="See meals icon" class="home-icon">
+        </a>
+      </div>
     </main>
     <footer class="footer">
       <p class="copyright">MealMaster - Cecilio Silva Monteiro - 2023</p>

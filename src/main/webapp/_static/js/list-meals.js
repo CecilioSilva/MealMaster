@@ -12,7 +12,7 @@ function getMeals(){
         if (res.ok) {
             // If request was a success serialize the result into JSON
             res.json().then(data => {
-                // After 500 ms delay render the cards
+                // After 100 ms delay render the cards
                 setTimeout(() => {
                     // Clear the meals container
                     mealsContainer.innerHTML = "";
@@ -27,7 +27,7 @@ function getMeals(){
                     </div>
                     `
                     })
-                }, 500);
+                }, 100);
             });
             return
         }
@@ -37,7 +37,7 @@ function getMeals(){
         // Set the error banner to given error
         err.json().then(data => {
             errorMsg.innerHTML = data.msg;
-        }).catch(err => {
+        }).catch(_ => {
             errorMsg.innerHTML = "Error getting ingredients"
         })
     });
