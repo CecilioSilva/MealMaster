@@ -13,6 +13,9 @@ public class MeasurementUnitResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllUnits() {
+        // Route for getting all measurement units
+
+        // Returns all measurement units as a json array of strings (the enum values)
         return Response.ok(MeasurementUnit.values()).build();
     }
 

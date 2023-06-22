@@ -1,7 +1,6 @@
 package me.ceciliosilva.ipass.mealmaster.model;
 
 import java.io.Serializable;
-import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
@@ -23,8 +22,10 @@ public class Ingredient implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Ingredient that = (Ingredient) o;
         return Objects.equals(id, that.id);
     }
@@ -38,7 +39,19 @@ public class Ingredient implements Serializable {
         return this.id;
     }
 
-    public HashMap<String, String> toMap(){
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public String getImageUrl() {
+        return this.image;
+    }
+
+    public HashMap<String, String> toMap() {
         HashMap<String, String> map = new HashMap<>();
 
         map.put("id", this.id);

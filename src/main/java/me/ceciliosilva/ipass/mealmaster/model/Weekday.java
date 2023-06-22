@@ -17,6 +17,7 @@ public class Weekday implements Serializable {
     }
 
     public void addMeal(Meal meal) {
+        // Adds a meal to the weekday
         meals.add(meal);
     }
 }

@@ -21,14 +21,21 @@ public class MealResource {
     @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllMeals(@Context SecurityContext sc) {
-        if(sc.getUserPrincipal() instanceof User current){
+        // Route for getting all meals
+
+        // Gets the user from the security context
+        if (sc.getUserPrincipal() instanceof User current) {
+            // Converts the meal to a list of maps
             ArrayList<HashMap<String, Object>> meals = new ArrayList<>();
-            for(Meal meal: current.getMeals()){
+            for (Meal meal : current.getMeals()) {
                 meals.add(meal.toMap());
             }
+
+            // Returns the list of meals
             return Response.ok(meals).build();
         }
 
+        // Returns an error if the user is not found
         return ApiHelper.simpleMsgResponse(Response.Status.INTERNAL_SERVER_ERROR, "Cant find user");
     }
 
@@ -38,8 +45,10 @@ public class MealResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response postMeal(@Context SecurityContext sc, String requestStr) {
-        if(sc.getUserPrincipal() instanceof User current){
+        // Route for adding an meal
+        if (sc.getUserPrincipal() instanceof User current) {
             try {
+                // Converts the request body to a json object
                 JsonObject requestBody = ApiHelper.requestBodyReader(requestStr);
 
                 String image = requestBody.getString("image");
@@ -47,13 +56,15 @@ public class MealResource {
                 String description = requestBody.getString("description");
                 Integer numberOfPeople = requestBody.getInt("numberOfPeople");
 
-
-                if(name.length() < 1){
+                // Checks if the name is valid
+                if (name.length() < 1) {
                     return ApiHelper.simpleMsgResponse(Response.Status.BAD_REQUEST, "Name is invalid");
                 }
 
+                // Checks if the description is valid
                 Meal meal = new Meal(name, image, numberOfPeople, description);
 
+                // Adds the ingredients to the meal
                 JsonArray ingredients = requestBody.getJsonArray("ingredients");
                 ingredients.forEach(jsonValue -> {
                     JsonObject jsn = jsonValue.asJsonObject();
@@ -61,18 +72,21 @@ public class MealResource {
                             jsn.getJsonNumber("amount").doubleValue(),
                             false,
                             MeasurementUnit.valueOf(jsn.getString("unit")),
-                            current.getIngredientById(jsn.getString("id"))
-                    ));
+                            current.getIngredientById(jsn.getString("id"))));
                 });
 
+                // Adds the meal to the user
                 current.addMeal(meal);
 
+                // Returns the status code and a message
                 return ApiHelper.simpleMsgResponse(Response.Status.OK, "Added Meal");
             } catch (Exception err) {
+                // Returns an error if something went wrong
                 return ApiHelper.simpleMsgResponse(Response.Status.INTERNAL_SERVER_ERROR, err.getMessage());
             }
         }
 
+        // Returns an error if the user is not found
         return ApiHelper.simpleMsgResponse(Response.Status.INTERNAL_SERVER_ERROR, "Cant find user");
     }
 
@@ -80,17 +94,24 @@ public class MealResource {
     @Path("delete/{id}")
     @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteMeal(@Context SecurityContext sc, @PathParam("id") String id){
-        if(sc.getUserPrincipal() instanceof User current){
+    public Response deleteMeal(@Context SecurityContext sc, @PathParam("id") String id) {
+        // Route for deleting an meal
+
+        // Gets the user from the security context
+        if (sc.getUserPrincipal() instanceof User current) {
             try {
+                // Deletes the meal
                 current.removeMeal(id);
 
+                // Returns the status code and a message
                 return ApiHelper.simpleMsgResponse(Response.Status.OK, "Deleted Meal");
             } catch (Exception err) {
+                // Returns an error if something went wrong
                 return ApiHelper.simpleMsgResponse(Response.Status.INTERNAL_SERVER_ERROR, err.getMessage());
             }
         }
 
+        // Returns an error if the user is not found
         return ApiHelper.simpleMsgResponse(Response.Status.INTERNAL_SERVER_ERROR, "Cant find user");
     }
 }

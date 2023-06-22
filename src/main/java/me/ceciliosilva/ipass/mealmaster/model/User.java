@@ -30,8 +30,8 @@ public class User implements Serializable, Principal {
     }
 
     public static User getUserByEmail(String email) {
-        for(User user: users){
-            if(user.email.equals(email)){
+        for (User user : users) {
+            if (user.email.equals(email)) {
                 return user;
             }
         }
@@ -41,8 +41,10 @@ public class User implements Serializable, Principal {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         User user = (User) o;
         return Objects.equals(email, user.email);
     }
@@ -60,23 +62,37 @@ public class User implements Serializable, Principal {
                 '}';
     }
 
-    public static void loadUsers(){
+    public static void loadUsers() {
         // Loads users array from data storage
         users = DataHelper.loadObject(saveFileName, new ArrayList<>());
     }
 
-    public static void saveUsers(){
+    public static void saveUsers() {
         // Serializes the users array to data storage
         DataHelper.saveObject(saveFileName, users);
     }
 
-    public static boolean registerUser(String name, String email, String password){
+    public static void clearUsers() {
+        // Clears the users array
+        users = new ArrayList<>();
+        saveUsers();
+    };
+
+    public static void setSaveFileName(String saveFileName) {
+        User.saveFileName = saveFileName;
+    }
+
+    public static ArrayList<User> getUsers() {
+        return (ArrayList<User>) users.clone();
+    }
+
+    public static boolean registerUser(String name, String email, String password) {
         Logger.info("User", "Registering user - ", email);
         loadUsers();
         User newUser = new User(name, email, password, new ArrayList<>());
 
         // Checks if the users array contains the user
-        if(users.contains(newUser)){
+        if (users.contains(newUser)) {
             Logger.warning("User", "User already exists - ", email);
             return false;
         }
@@ -87,18 +103,19 @@ public class User implements Serializable, Principal {
         return true;
     }
 
-    public static User authenticateUser(String email, String password) throws PasswordIncorrectException, UserDoesNotExistException {
+    public static User authenticateUser(String email, String password)
+            throws PasswordIncorrectException, UserDoesNotExistException {
         Logger.info("User", "Logging in user - ", email);
         loadUsers();
 
         // Checks every user if the email and password match any of the existing users
-        for (User user: users){
+        for (User user : users) {
 
             // If the email is the same the user exists
-            if(user.email.equals(email)){
+            if (user.email.equals(email)) {
 
                 // Checks if the password matches
-                if(user.password.equals(password)){
+                if (user.password.equals(password)) {
                     return user;
                 }
                 throw new PasswordIncorrectException();
@@ -116,18 +133,20 @@ public class User implements Serializable, Principal {
     }
 
     // Ingredients
-    public ArrayList<Ingredient> getIngredients(){
+    public ArrayList<Ingredient> getIngredients() {
         return this.ingredients;
     }
-    public void addIngredient(Ingredient ingredient){
+
+    public void addIngredient(Ingredient ingredient) {
         this.ingredients.add(ingredient);
         saveUsers();
     }
-    public void removeIngredient(String id){
+
+    public void removeIngredient(String id) {
         ArrayList<Ingredient> filteredIngredients = new ArrayList<>();
 
-        for (Ingredient ing: this.ingredients){
-            if(!ing.getId().equals(id)){
+        for (Ingredient ing : this.ingredients) {
+            if (!ing.getId().equals(id)) {
                 filteredIngredients.add(ing);
             }
         }
@@ -135,9 +154,10 @@ public class User implements Serializable, Principal {
         this.ingredients = filteredIngredients;
         saveUsers();
     }
+
     public Ingredient getIngredientById(String ingredientId) {
-        for (Ingredient ing: this.ingredients){
-            if(ing.getId().equals(ingredientId)){
+        for (Ingredient ing : this.ingredients) {
+            if (ing.getId().equals(ingredientId)) {
                 return ing;
             }
         }
@@ -145,18 +165,20 @@ public class User implements Serializable, Principal {
     }
 
     // Meal
-    public ArrayList<Meal> getMeals(){
+    public ArrayList<Meal> getMeals() {
         return this.meals;
     }
-    public void addMeal(Meal meal){
+
+    public void addMeal(Meal meal) {
         this.meals.add(meal);
         saveUsers();
     }
-    public void removeMeal(String id){
+
+    public void removeMeal(String id) {
         ArrayList<Meal> filteredMeals = new ArrayList<>();
 
-        for (Meal meal: this.meals){
-            if(!meal.getId().equals(id)){
+        for (Meal meal : this.meals) {
+            if (!meal.getId().equals(id)) {
                 filteredMeals.add(meal);
             }
         }

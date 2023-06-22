@@ -24,8 +24,10 @@ public class MealIngredient implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         MealIngredient that = (MealIngredient) o;
         return Objects.equals(id, that.id);
     }
@@ -35,8 +37,23 @@ public class MealIngredient implements Serializable {
         return Objects.hash(id);
     }
 
+    public Ingredient getIngredient() {
+        return ingredient;
+    }
 
-    public HashMap<String, Object> toMap(){
+    public double getAmount() {
+        return amount;
+    }
+
+    public boolean getIsBought() {
+        return bought;
+    }
+
+    public MeasurementUnit getMeasurementUnit() {
+        return measurementUnit;
+    }
+
+    public HashMap<String, Object> toMap() {
         HashMap<String, Object> map = new HashMap<>();
 
         map.put("id", this.id);

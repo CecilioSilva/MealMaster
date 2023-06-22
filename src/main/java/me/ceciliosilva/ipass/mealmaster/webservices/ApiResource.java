@@ -10,6 +10,7 @@ public class ApiResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getStatus() {
+        //Route to check if api is online
         return "OK";
     }
 }

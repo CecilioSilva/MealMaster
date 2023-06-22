@@ -28,16 +28,23 @@ public class Meal implements Serializable {
         return this.id;
     }
 
-    public void addIngredient(MealIngredient ingredient){
-        if(!this.ingredients.contains(ingredient)){
+    public void addIngredient(MealIngredient ingredient) {
+        if (!this.ingredients.contains(ingredient)) {
             this.ingredients.add(ingredient);
         }
     }
 
+    public ArrayList<MealIngredient> getIngredients() {
+        // Returns the ingredients of the meal
+        return (ArrayList<MealIngredient>) this.ingredients.clone();
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Meal meal = (Meal) o;
         return Objects.equals(id, meal.id);
     }
@@ -47,7 +54,7 @@ public class Meal implements Serializable {
         return Objects.hash(id);
     }
 
-    public HashMap<String, Object> toMap(){
+    public HashMap<String, Object> toMap() {
         HashMap<String, Object> map = new HashMap<>();
 
         map.put("id", this.id);
@@ -57,7 +64,7 @@ public class Meal implements Serializable {
         map.put("image", this.image);
 
         ArrayList<HashMap<String, Object>> ings = new ArrayList<>();
-        for (MealIngredient ing: this.ingredients){
+        for (MealIngredient ing : this.ingredients) {
             ings.add(ing.toMap());
         }
         map.put("ingredients", ings);
