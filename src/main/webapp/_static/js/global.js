@@ -1,4 +1,6 @@
 function logout(){
+    // Logs the user out
+
     // Removes users JWT
     window.localStorage.removeItem("userJWT");
 
@@ -47,23 +49,29 @@ function isLoggedIn() {
     return true;
 }
 
-
 function checkLoginStatus() {
+    // Returns user to login page if their not logged in
+
     // Checks if user is authenticated
     const loggedIn = isLoggedIn();
 
     if(!loggedIn){
+        // If user is not logged in redirect them to login page
         window.location.replace("/login.html?status=Not Logged in")
     }
 }
 
 function getAuthorizationHeader(){
+    // Creates a header for requests with the logged-in users JWT token
+
     return {
         "Authorization": `Bearer ${window.localStorage.getItem("userJWT")}`
     }
 }
 
 function getStatusMessage() {
+    // Displays the status message in status banner
+
     const statusMsg = document.getElementById("status-msg");
     // Clears status message
     statusMsg.innerHTML = "";
@@ -72,4 +80,9 @@ function getStatusMessage() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     statusMsg.innerHTML = urlParams.get("status");
+}
+
+function clipText(text, maxLength) {
+    // Makes it so the length of a string is not longer than maxLength
+    return (text.length > maxLength) ? text.slice(0, maxLength-1) + '&hellip;' : text;
 }

@@ -1,3 +1,4 @@
+// HTML elements
 const registerForm = document.getElementById("register-form");
 const errorMsg = document.getElementById("error-msg");
 const registerButton = document.getElementById("register-button");
@@ -55,4 +56,5 @@ function register() {
     });
 }
 
+// Setting Event-listeners
 registerButton.addEventListener("click", register);
