@@ -18,6 +18,7 @@ public class User implements Serializable, Principal {
     private String password;
     private ArrayList<Ingredient> ingredients = new ArrayList<>();
     private ArrayList<Meal> meals = new ArrayList<>();
+    private ArrayList<ShoppingList> shoppingLists = new ArrayList<>();
     private ArrayList<String> favorites;
 
     private static ArrayList<User> users;
@@ -132,9 +133,9 @@ public class User implements Serializable, Principal {
         return this.name;
     }
 
-    // Ingredients
+    // region Ingredients
     public ArrayList<Ingredient> getIngredients() {
-        return this.ingredients;
+        return (ArrayList<Ingredient>) this.ingredients.clone();
     }
 
     public void addIngredient(Ingredient ingredient) {
@@ -163,10 +164,11 @@ public class User implements Serializable, Principal {
         }
         return null;
     }
+    // endregion
 
-    // Meal
+    // region Meal
     public ArrayList<Meal> getMeals() {
-        return this.meals;
+        return (ArrayList<Meal>) this.meals.clone();
     }
 
     public void addMeal(Meal meal) {
@@ -187,7 +189,7 @@ public class User implements Serializable, Principal {
         saveUsers();
     }
 
-    public Meal getMealById(String id){
+    public Meal getMealById(String id) {
         for (Meal meal : this.meals) {
             if (meal.getId().equals(id)) {
                 return meal;
@@ -196,4 +198,55 @@ public class User implements Serializable, Principal {
 
         return null;
     }
+    // endregion
+
+    // region Shopping lists
+    public ArrayList<ShoppingList> getShoppingLists() {
+        return (ArrayList<ShoppingList>) this.shoppingLists.clone();
+    }
+
+    public void addShoppingList(ShoppingList list) {
+        this.shoppingLists.add(list);
+        saveUsers();
+    }
+
+    public void removeShoppingList(String id) {
+        ArrayList<ShoppingList> filteredShoppingLists = new ArrayList<>();
+
+        for (ShoppingList shoppingList : this.shoppingLists) {
+            if (!shoppingList.getId().equals(id)) {
+                filteredShoppingLists.add(shoppingList);
+            }
+        }
+
+        this.shoppingLists = filteredShoppingLists;
+        saveUsers();
+    }
+
+    public ShoppingList getShoppingListById(String id) {
+        for (ShoppingList shoppingList : this.shoppingLists) {
+            if (shoppingList.getId().equals(id)) {
+                return shoppingList;
+            }
+        }
+
+        return null;
+    }
+
+    public static ShoppingList searchShoppingList(String id) {
+        for (User user : users) {
+            ShoppingList shoppingList = user.getShoppingListById(id);
+
+            // If shopping list exists return it
+            if (shoppingList != null) {
+                // If shopping list is public return it
+                if (shoppingList.getIsPublic()) {
+                    return shoppingList;
+                }
+                return null;
+            }
+        }
+        return null;
+    }
+    // endregion
 }

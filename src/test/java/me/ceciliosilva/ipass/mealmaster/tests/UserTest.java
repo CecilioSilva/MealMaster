@@ -10,15 +10,20 @@ import me.ceciliosilva.ipass.mealmaster.model.Ingredient;
 import me.ceciliosilva.ipass.mealmaster.model.Meal;
 import me.ceciliosilva.ipass.mealmaster.model.MealIngredient;
 import me.ceciliosilva.ipass.mealmaster.model.MeasurementUnit;
+import me.ceciliosilva.ipass.mealmaster.model.ShoppingList;
 import me.ceciliosilva.ipass.mealmaster.model.User;
+import me.ceciliosilva.ipass.mealmaster.model.Weekday;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.LocalDate;
 
 public class UserTest {
 
     private User user;
     private Ingredient ingredient;
     private Meal meal;
+    private ShoppingList shoppingList;
 
     @BeforeAll
     public static void reset() {
@@ -38,6 +43,12 @@ public class UserTest {
         meal = new Meal("meal", "https://www.test.com", 4, "test meal");
         meal.addIngredient(new MealIngredient(100, false, MeasurementUnit.gram, ingredient));
         user.addMeal(meal);
+
+        Weekday weekday = new Weekday(LocalDate.now(), meal);
+        shoppingList = new ShoppingList(false, "test list");
+        shoppingList.addWeekMeal(weekday);
+
+        user.addShoppingList(shoppingList);
     }
 
     @Test
@@ -188,4 +199,46 @@ public class UserTest {
         user.removeMeal(meal.getId());
         assertEquals(0, user.getMeals().size());
     }
+
+    @Test
+    public void getShoppingLists() {
+        // Tests if the user shopping lists are returned
+        assertEquals(1, user.getShoppingLists().size());
+    }
+
+    @Test
+    public void addShoppingList() {
+        // Tests if the shopping list is added
+        user.addShoppingList(new ShoppingList(false, "test list2"));
+        assertEquals(2, user.getShoppingLists().size());
+    }
+
+    @Test
+    public void removeShoppingList() {
+        // Tests if the shopping list is removed
+        user.removeShoppingList(shoppingList.getId());
+        assertEquals(0, user.getShoppingLists().size());
+    }
+
+    @Test
+    public void getShoppingListById() {
+        // Tests if the shopping list is returned by id
+        ShoppingList getShoppingList = user.getShoppingListById(shoppingList.getId());
+        assertEquals(shoppingList.getId(), getShoppingList.getId());
+    }
+
+    @Test
+    public void getPublicShoppingLists() {
+        // Tests if the user public shopping lists are returned
+        assertEquals(null, User.searchShoppingList(shoppingList.getId()));
+    }
+
+    @Test
+    public void searchShoppingList() {
+        // Tests if the user shopping list is returned by id
+        shoppingList.setPublic(true);
+        ShoppingList getShoppingList = User.searchShoppingList(shoppingList.getId());
+        assertEquals(shoppingList.getId(), getShoppingList.getId());
+    }
+
 }

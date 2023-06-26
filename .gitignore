@@ -104,4 +104,6 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 .flattened-pom.xml
 
+savedata/
+
 # End of https://www.gitignore.io/api/maven,java-web,intellij+all
