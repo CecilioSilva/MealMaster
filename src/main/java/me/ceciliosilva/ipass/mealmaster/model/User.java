@@ -186,4 +186,14 @@ public class User implements Serializable, Principal {
         this.meals = filteredMeals;
         saveUsers();
     }
+
+    public Meal getMealById(String id){
+        for (Meal meal : this.meals) {
+            if (meal.getId().equals(id)) {
+                return meal;
+            }
+        }
+
+        return null;
+    }
 }

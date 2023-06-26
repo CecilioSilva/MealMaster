@@ -3,45 +3,40 @@ const mealsContainer = document.getElementById("meals-container");
 
 function getMeals(){
     // All the meals from the user
-    fetch("/api/meals", {
-        method: "GET",
-        headers: {
-            ...getAuthorizationHeader(),
-        },
-    }).then(res => {
-        if (res.ok) {
-            // If request was a success serialize the result into JSON
-            res.json().then(data => {
-                // After 100 ms delay render the cards
-                setTimeout(() => {
-                    // Clear the meals container
-                    mealsContainer.innerHTML = "";
+    serverGetRequest("/meals", (data) => {
+        setTimeout(() => {
+            // Clear the meals container
+            mealsContainer.innerHTML = "";
 
-                    // For every meal in results append it to the meal container as card html
-                    data.forEach(meal => {
-                        mealsContainer.innerHTML += `
-                    <div class="item-card">
+            // For every meal in results append it to the meal container as card html
+            data.forEach(meal => {
+                mealsContainer.innerHTML += `
+                    <div class="item-card" onclick="openMeal('${meal.id}')">
                       <h2 class="item-title">${meal.name}</h2>
                       <img src="${meal.image}" alt="image" class="card-image">
                       <p class="card-description">${clipText(meal.description, 50)}</p>
+                      <img onclick="deleteMeal('${meal.id}')" class="item-close" src="/_static/images/trash.svg" alt="Delete meal" aria-label="Delete meal" aria-roledescription="Deletes the meal">
                     </div>
                     `
-                    })
-                }, 100);
-            });
-            return
-        }
-        // If there was an error reject the promise
-        return Promise.reject(res);
-    }).catch(err => {
-        // Set the error banner to given error
-        err.json().then(data => {
-            errorMsg.innerHTML = data.msg;
-        }).catch(_ => {
-            errorMsg.innerHTML = "Error getting ingredients"
-        })
-    });
+            })
+        }, 100);
+    }, (errMsg) => {
+        errorMsg.innerHTML = errMsg;
+    })
+}
 
+function deleteMeal(mealId){
+    // Deletes the meal from the user
+    serverDeleteRequest(`/meals/delete/${mealId}`, () => {
+        // Reload the window
+        window.location.reload();
+    }, (errMsg) => {
+        alert(errMsg);
+    });
+}
+
+function openMeal(mealId){
+    window.location = `/meal.html?id=${mealId}`;
 }
 
 // Run on page load

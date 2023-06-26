@@ -86,3 +86,53 @@ function clipText(text, maxLength) {
     // Makes it so the length of a string is not longer than maxLength
     return (text.length > maxLength) ? text.slice(0, maxLength-1) + '&hellip;' : text;
 }
+
+function serverGetRequest(route, success, failure){
+    fetch(`/api${route}`, {
+        method: "GET",
+        headers: {
+            ...getAuthorizationHeader(),
+        },
+    }).then((res) => {
+        if (res.ok) {
+            // If request was a success serialize the result into JSON
+            res.json().then(success);
+            return
+        }
+        // If there was an error reject the promise
+        return Promise.reject(res);
+    }).catch(err => {
+        // Set the error banner to given error
+        err.json().then(data => {
+            data.msg ??= "";
+            failure(data.msg)
+        }).catch(_ => {
+            alert(`Error get sending request to: ${route}`)
+        })
+    });
+}
+
+function serverDeleteRequest(route, success, failure){
+    fetch(`/api${route}`, {
+        method: "DELETE",
+        headers: {
+            ...getAuthorizationHeader(),
+        },
+    }).then((res) => {
+        if (res.ok) {
+            // If request was a success serialize the result into JSON
+            res.json().then(success);
+            return
+        }
+        // If there was an error reject the promise
+        return Promise.reject(res);
+    }).catch(err => {
+        // Set the error banner to given error
+        err.json().then(data => {
+            data.msg ??= "";
+            failure(data.msg)
+        }).catch(_ => {
+            alert(`Error delete sending request to: ${route}`)
+        })
+    });
+}

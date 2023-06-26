@@ -114,4 +114,29 @@ public class MealResource {
         // Returns an error if the user is not found
         return ApiHelper.simpleMsgResponse(Response.Status.INTERNAL_SERVER_ERROR, "Cant find user");
     }
+
+    @GET
+    @Path("{id}")
+    @RolesAllowed("user")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getMealById(@Context SecurityContext sc, @PathParam("id") String id) {
+        // Route for deleting an meal
+
+        // Gets the user from the security context
+        if (sc.getUserPrincipal() instanceof User current) {
+            try {
+                // Deletes the meal
+                Meal meal = current.getMealById(id);
+
+                // Returns the status code and a message
+                return Response.ok(meal.toMap()).build();
+            } catch (Exception err) {
+                // Returns an error if something went wrong
+                return ApiHelper.simpleMsgResponse(Response.Status.INTERNAL_SERVER_ERROR, err.getMessage());
+            }
+        }
+
+        // Returns an error if the user is not found
+        return ApiHelper.simpleMsgResponse(Response.Status.INTERNAL_SERVER_ERROR, "Cant find user");
+    }
 }

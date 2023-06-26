@@ -3,46 +3,39 @@ const ingredientContainer = document.getElementById("ingredients-container");
 
 function getIngredients(){
     // All the ingredients from the user
-    fetch("/api/ingredients", {
-        method: "GET",
-        headers: {
-            ...getAuthorizationHeader(),
-        },
-    }).then((res) => {
-        if (res.ok) {
-            // If request was a success serialize the result into JSON
-            res.json().then(data => {
-                // After 100 ms delay render the cards
-               setTimeout(() => {
-                   // Clear the ingredient container
-                   ingredientContainer.innerHTML = "";
+    serverGetRequest("/ingredients",
+    (data) => {
+                setTimeout(() => {
+                    // Clear the ingredient container
+                    ingredientContainer.innerHTML = "";
 
-                   // For every ingredient in results append it to the meal container as card html
-                   data.forEach(ingredient => {
-                       ingredientContainer.innerHTML += `
-                    <div class="item-card">
-                      <h2 class="item-title">${ingredient.name}</h2>
-                      <img src="${ingredient.image}" alt="image" class="card-image">
-                      <p class="card-description">${clipText(ingredient.description, 50)}</p>
-                    </div>
-                    `
-                   })
-               }, 100)
-            });
-            return
+                    // For every ingredient in results append it to the meal container as card html
+                    data.forEach(ingredient => {
+                        ingredientContainer.innerHTML += `
+                            <div class="item-card">
+                              <h2 class="item-title">${ingredient.name}</h2>
+                              <img src="${ingredient.image}" alt="image" class="card-image">
+                              <p class="card-description">${clipText(ingredient.description, 50)}</p>
+                              <img onclick="deleteIngredient('${ingredient.id}')" class="item-close" src="/_static/images/trash.svg" alt="Delete ingredient" aria-label="Delete item" aria-roledescription="Deletes the item">
+                            </div>
+                            `
+                    })
+                }, 100)
+            },
+        (errMsg) => {
+            errorMsg.innerHTML = errMsg;
         }
-        // If there was an error reject the promise
-        return Promise.reject(res);
-    }).catch(err => {
-        // Set the error banner to given error
-        err.json().then(data => {
-            data.msg ??= undefined;
-            errorMsg.innerHTML = data.msg;
-        }).catch(_ => {
-            errorMsg.innerHTML = "Error getting ingredients"
-        })
-    });
+    )
+}
 
+function deleteIngredient(ingredientId){
+    // Deletes the ingredient from the user
+    serverDeleteRequest(`/ingredients/delete/${ingredientId}`, () => {
+        // Reload the window
+        window.location.reload();
+    }, (errMsg) => {
+        alert(errMsg);
+    })
 }
 
 // Run on page load
