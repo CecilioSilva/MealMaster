@@ -136,3 +136,7 @@ function serverDeleteRequest(route, success, failure){
         })
     });
 }
+
+function openMeal(mealId){
+    window.location = `/meal.html?id=${mealId}`;
+}

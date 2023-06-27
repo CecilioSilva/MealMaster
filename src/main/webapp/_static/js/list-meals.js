@@ -25,7 +25,7 @@ function getMeals(){
     })
 }
 
-function deleteMeal(mealId){
+function deleteMeal(mealId) {
     // Deletes the meal from the user
     serverDeleteRequest(`/meals/delete/${mealId}`, () => {
         // Reload the window
@@ -33,10 +33,6 @@ function deleteMeal(mealId){
     }, (errMsg) => {
         alert(errMsg);
     });
-}
-
-function openMeal(mealId){
-    window.location = `/meal.html?id=${mealId}`;
 }
 
 // Run on page load

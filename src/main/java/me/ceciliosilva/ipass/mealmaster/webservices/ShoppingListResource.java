@@ -146,7 +146,7 @@ public class ShoppingListResource {
     }
 
     @GET
-    @Path("/public/{id}")
+    @Path("public/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPublicShoppingListById(@PathParam("id") String id) {
         // Route for getting a shopping list

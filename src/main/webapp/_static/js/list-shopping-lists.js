@@ -13,7 +13,7 @@ function getShoppingLists(){
                 data.forEach(shoppingList => {
 
                     shoppingListContainer.innerHTML += `
-                            <div class="item-card" style="height: 200px; overflow-y: hidden">
+                            <div class="item-card" style="height: 200px; overflow-y: hidden" onclick="openShoppingList('${shoppingList.id}')">
                               <h2 class="item-title">${shoppingList.name}</h2>
                                 <ul class="item-list">
                                    ${shoppingList.days.map(meal => `<li class="item-list-item">${meal.meal.name}</li>`).join("")}
@@ -38,6 +38,10 @@ function deleteShoppingList(ingredientId){
     }, (errMsg) => {
         alert(errMsg);
     })
+}
+
+function openShoppingList(id){
+    window.location = `/shopping-list.html?id=${id}`;
 }
 
 // Run on page load
