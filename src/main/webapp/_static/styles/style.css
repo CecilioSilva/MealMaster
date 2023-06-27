@@ -89,7 +89,8 @@ input {
 
 input[type="text"],
 input[type="email"],
-input[type="password"]
+input[type="password"],
+input[type="date"]
 {
     padding: .5rem 1.2rem;
     margin-bottom: .5rem;
@@ -241,6 +242,14 @@ input[type="button"]:hover{
 
 .item-card:hover .item-close {
     display: block;
+}
+
+.item-list {
+    margin: 0;
+}
+
+.item-list-item{
+    text-align: start;
 }
 
 /*endregion*/

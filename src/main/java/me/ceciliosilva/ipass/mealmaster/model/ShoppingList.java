@@ -32,10 +32,14 @@ public class ShoppingList implements Serializable {
     }
 
     public HashMap<String, Object> toMap() {
-        HashMap<LocalDate, HashMap<String, Object>> weekdayMap = new HashMap<>();
+        ArrayList<HashMap<String, Object>> list = new ArrayList<>();
+
 
         for (Weekday day : getMeals()) {
-            weekdayMap.put(day.getDate(), day.getMeal().toMap());
+            HashMap<String, Object> weekdayMap = new HashMap<>();
+            weekdayMap.put("meal", day.getMeal().toMap());
+            weekdayMap.put("date", day.getDate().toString());
+            list.add(weekdayMap);
         }
 
         HashMap<String, Object> shoppingListMap = new HashMap<>();
@@ -43,7 +47,7 @@ public class ShoppingList implements Serializable {
         shoppingListMap.put("name", this.name);
         shoppingListMap.put("id", this.id);
         shoppingListMap.put("isPublic", this.isPublic);
-        shoppingListMap.put("days", weekdayMap);
+        shoppingListMap.put("days", list);
 
         return shoppingListMap;
     }

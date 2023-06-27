@@ -1,6 +1,5 @@
 package me.ceciliosilva.ipass.mealmaster.webservices;
 
-
 import me.ceciliosilva.ipass.mealmaster.model.*;
 import me.ceciliosilva.ipass.mealmaster.utils.ApiHelper;
 
@@ -13,9 +12,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
+import java.io.Console;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,6 +35,7 @@ public class ShoppingListResource {
             for (ShoppingList shoppingList : current.getShoppingLists()) {
                 shoppingListList.add(shoppingList.toMap());
             }
+
             // Returns the list of shoppingLists
             return Response.ok(shoppingListList).build();
         }
@@ -44,7 +45,8 @@ public class ShoppingListResource {
     }
 
     @POST
-    @RolesAllowed("add")
+    @Path("add")
+    @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response postShoppingList(@Context SecurityContext sc, String requestStr) {
@@ -64,26 +66,21 @@ public class ShoppingListResource {
                 // Checks if the description is valid
                 ShoppingList shoppingList = new ShoppingList(false, name);
 
-                // Adds the meal to the Shoppinglist
+                // Adds the meal to the Shopping-list
                 JsonArray days = requestBody.getJsonArray("days");
-                for (JsonValue jsonValue : days) {
-                    JsonObject jsn = jsonValue.asJsonObject();
+                for (JsonValue day: days) {
+                    JsonObject jsn = day.asJsonObject();
+                    LocalDate date = LocalDate.parse(jsn.getString("date"));
+                    String id = jsn.getString("id");
+                    Meal meal = current.getMealById(id);
 
-                    for(Map.Entry<String, JsonValue> dayEntry: jsn.entrySet()){
-                        LocalDate date = LocalDate.parse(dayEntry.getKey());
-                        JsonArray jsnValue = dayEntry.getValue().asJsonArray();
-                        jsnValue.forEach(dayId -> {
-                            Meal meal = current.getMealById(dayId.toString());
-                            if(meal != null){
-                                Weekday weekday = new Weekday(date, meal);
-                                shoppingList.addWeekMeal(weekday);
-                            }
-                        });
-
+                    if(meal != null){
+                        Weekday weekday = new Weekday(date, meal);
+                        shoppingList.addWeekMeal(weekday);
                     }
-                };
+                }
 
-                // Adds the shoppinglist to the user
+                // Adds the shopping-list to the user
                 current.addShoppingList(shoppingList);
 
                 // Returns the status code and a message

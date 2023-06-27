@@ -206,6 +206,11 @@ public class User implements Serializable, Principal {
     }
 
     public void addShoppingList(ShoppingList list) {
+
+        if(this.shoppingLists == null){
+            this.shoppingLists = new ArrayList<>();
+        }
+
         this.shoppingLists.add(list);
         saveUsers();
     }

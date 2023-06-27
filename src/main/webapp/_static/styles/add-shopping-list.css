@@ -1,0 +1,97 @@
+.meal-form{
+    display: flex;
+    width: 100%;
+    position: relative;
+    align-items: end;
+    gap: 10px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.meal-form-container{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media screen and (max-width: 800px) {
+    .meal-form-container {
+        width: 95%;
+    }
+}
+
+.submit-button {
+    height: 38px;
+    width: 38px;
+    margin-bottom: .5rem;
+}
+
+select {
+    padding: .55rem 1.2rem;
+    margin-bottom: .5rem;
+}
+
+input {
+    width: 100%;
+}
+
+#date-input-container{
+    width: 40%;
+}
+
+#meal-input-container{
+    width: 60%;
+}
+
+#name-input-container{
+    width: 70%;
+}
+
+.add-button {
+    font-size: .9rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--primary-color);
+    background: var(--secodary-color);
+    padding: .7rem 1.3rem;
+    border-radius: .2rem;
+    border: none;
+    cursor: pointer;
+    width: 60%;
+}
+
+.add-button:hover {
+    filter: brightness(.9);
+}
+
+.meal-container {
+    margin: 0;
+    list-style: none;
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    height: min(30vh, 400px);
+    overflow-y: auto;
+    background-color: #f8f8f8;
+}
+
+.meal-item:nth-child(even){
+    background-color: rgba(51, 51, 51, 0.27);
+}
+
+.meal-item {
+     display: flex;
+    justify-content: space-between;
+    padding: 2px;
+}
+
+.meal-remove {
+    cursor: pointer;
+}
