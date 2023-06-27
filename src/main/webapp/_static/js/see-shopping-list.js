@@ -5,6 +5,7 @@ const shoppingListTitle = document.getElementById("shopping-list-title");
 const shoppingListIngredients = document.getElementById("shopping-list-ingredients");
 const mealsItems = document.getElementById("meals-items");
 const loader = document.getElementById("loader");
+const shareButton = document.getElementById("share-button");
 
 // Globals
 let SHOPPING_LIST_ID;
@@ -100,6 +101,11 @@ function getShoppingListData(){
     shoppingListContainer.classList.toggle("hidden",  false);
     loader.classList.toggle("hidden", true);
 }
+
+// Event listeners
+shareButton.addEventListener("click", () => {
+    alert("Alert pressed");
+})
 
 // Run on load
 checkLoginStatus()
