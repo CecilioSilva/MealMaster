@@ -13,9 +13,9 @@ function getShoppingLists(){
                 data.forEach(shoppingList => {
 
                     shoppingListContainer.innerHTML += `
-                            <div class="item-card" style="height: 200px; overflow-y: hidden" onclick="openShoppingList('${shoppingList.id}')">
-                              <h2 class="item-title">${shoppingList.name}</h2>
-                                <ul class="item-list">
+                            <div class="item-card" style="height: 200px; overflow-y: hidden" >
+                              <h2 class="item-title" onclick="openShoppingList('${shoppingList.id}')">${shoppingList.name}</h2>
+                                <ul class="item-list" onclick="openShoppingList('${shoppingList.id}')">
                                    ${shoppingList.days.map(meal => `<li class="item-list-item">${meal.meal.name}</li>`).join("")}
                                 </ul>
                               <img onclick="deleteShoppingList('${shoppingList.id}')" class="item-close" src="/_static/images/trash.svg" alt="Delete shopping list" aria-label="Delete item" aria-roledescription="Deletes the item">
