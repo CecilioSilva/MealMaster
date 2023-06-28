@@ -63,7 +63,7 @@ function getShoppingListData() {
                 `;
         })
         shoppingListContainer.classList.toggle("hidden",  false);
-    }, (err) => {
+    }, () => {
         errorMsg.innerHTML = "Shopping list could not be found or is not public";
     })
 

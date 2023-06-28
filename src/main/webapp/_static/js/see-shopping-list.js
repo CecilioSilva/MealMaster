@@ -102,7 +102,8 @@ shareButton.addEventListener("click", async () => {
         })
 
         if(!response.ok){
-            throw await response.text();
+            alert(await response.text());
+            return;
         }
 
     } catch (e) {
@@ -118,13 +119,12 @@ shareButton.addEventListener("click", async () => {
 
 hideButton.addEventListener("click", async () => {
     try {
-        const response = await fetch(`/api/shopping-list/public/${SHOPPING_LIST_ID}/false`,{
+        await fetch(`/api/shopping-list/public/${SHOPPING_LIST_ID}/false`,{
             method: "PUT",
             headers: {
                 ...getAuthorizationHeader()
             }
         })
-
     } catch (e) {
         alert(e);
         return;
