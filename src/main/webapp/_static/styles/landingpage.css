@@ -1,0 +1,183 @@
+:root {
+    --seperator: 60px;
+}
+
+/*region Hero*/
+.nav-bar {
+    position: fixed;
+    width: 100%;
+    z-index: 4;
+}
+
+.hero {
+    width: 100%;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--seperator);
+}
+
+.hero-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero-logo {
+    z-index: 1;
+    width: min(60%, 900px);
+}
+
+.hero-description {
+    z-index: 1;
+    width: min(40%, 600px);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width: 800px) {
+    .hero-description {
+        font-size: 1rem;
+        width: 70%;
+    }
+
+    .hero-logo {
+        width: 80%;
+    }
+}
+
+/*endregion*/
+
+/*region Split row*/
+.split-row {
+    width: 100%;
+    display: flex;
+    position: relative;
+    gap: 1rem;
+    margin-bottom: var(--seperator);
+    justify-content: center;
+    align-items: center;
+}
+
+.split-row>*{
+    width: 50%;
+    margin: 10px;
+}
+
+.page-image {
+    overflow: hidden;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 5px;
+}
+
+.text-title {
+    font-size: 1.7rem;
+}
+
+@media screen and (max-width: 1000px){
+    .split-row {
+        flex-direction: column;
+    }
+    .split-row>*{
+        width: 100%;
+    }
+
+    .text,
+    .text-title {
+        text-align: center;
+    }
+}
+
+
+/*endregion*/
+
+/*region Points*/
+.points {
+    margin-bottom: var(--seperator);
+    display: flex;
+    gap: 1rem;
+    padding: 10px;
+}
+
+.point {
+    width: 33%;
+    text-align: center;
+    padding: .5rem;
+    background-color: var(--secodary-color);
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.point-image {
+    width: 30px;
+    height: 30px;
+}
+
+.point-text {
+    margin: 5px;
+    padding: 5px;
+}
+
+@media screen and (max-width: 1000px){
+    .points {
+        flex-direction: column;
+    }
+
+    .point {
+        width: 100%;
+    }
+}
+/*endregion*/
+
+/*region Testimony*/
+
+.testimony {
+    display: flex;
+    position: relative;
+    gap: 1rem;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: var(--seperator);
+}
+
+.testimony-image {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 9999px;
+}
+
+.testimony-name {
+    font-size: 2rem;
+    font-family: 'Dancing Script', cursive;
+    margin: 0;
+    font-weight: bold;
+    color: var(--secodary-color);
+}
+
+@media screen and (max-width: 777px) {
+    .testimony {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+/*endregion*/
+
+
+html {
+    background: #f6fdff;
+}
