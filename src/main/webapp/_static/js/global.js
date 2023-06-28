@@ -107,7 +107,7 @@ function serverGetRequest(route, success, failure){
             data.msg ??= "";
             failure(data.msg)
         }).catch(_ => {
-            alert(`Error get sending request to: ${route}`)
+            failure(`Error get sending request to: ${route}`)
         })
     });
 }
@@ -139,4 +139,21 @@ function serverDeleteRequest(route, success, failure){
 
 function openMeal(mealId){
     window.location = `/meal.html?id=${mealId}`;
+}
+
+function combineObjects(objArr) {
+    const combinedObj = {};
+
+    objArr.forEach(obj => {
+        const { unit, id, ...rest } = obj;
+
+        const key = unit + '_' + id;
+        if (!combinedObj[key]) {
+            combinedObj[key] = { unit, id, ...rest };
+        } else {
+            combinedObj[key].amount += obj.amount;
+        }
+    });
+
+    return Object.values(combinedObj);
 }

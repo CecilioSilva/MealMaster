@@ -166,4 +166,34 @@ public class ShoppingListResource {
             return ApiHelper.simpleMsgResponse(Response.Status.INTERNAL_SERVER_ERROR, err.getMessage());
         }
     }
+
+    @PUT
+    @Path("public/{id}/{state}")
+    @RolesAllowed("user")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response setShoppingListPublic(@Context SecurityContext sc, @PathParam("id") String id, @PathParam("state") boolean state){
+        // Route for setting a shopping list to public
+
+
+        // Gets the user from the security context
+        if (sc.getUserPrincipal() instanceof User current) {
+            try {
+                // Gets the shopping list from user
+                ShoppingList shoppingList = current.getShoppingListById(id);
+
+                if(shoppingList != null){
+                    shoppingList.setPublic(state);
+                    return ApiHelper.simpleMsgResponse(Response.Status.OK, "success");
+                }
+
+                return ApiHelper.simpleMsgResponse(Response.Status.BAD_REQUEST, "Shopping list not found");
+            } catch (Exception err) {
+                // Returns an error if something went wrong
+                return ApiHelper.simpleMsgResponse(Response.Status.INTERNAL_SERVER_ERROR, err.getMessage());
+            }
+        }
+
+        // Returns an error if the user is not found
+        return ApiHelper.simpleMsgResponse(Response.Status.INTERNAL_SERVER_ERROR, "Cant find user");
+    }
 }

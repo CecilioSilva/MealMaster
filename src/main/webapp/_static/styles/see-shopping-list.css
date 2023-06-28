@@ -1,0 +1,117 @@
+.shopping-list-container {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    min-height: 80vh;
+    max-width: 1100px;
+    justify-content: center;
+}
+
+
+
+/*region Shopping list*/
+.shopping-list {
+    padding: 15px;
+    width: 55%;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+}
+
+.shopping-list-title {
+    margin: 0;
+}
+
+.shopping-list-ingredients {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 10px 0 0 10px;
+}
+
+.list-ingredient {
+    display: flex;
+    justify-content: space-between;
+}
+/*endregion*/
+
+
+/*region Meals*/
+.meals-container {
+    width: 45%;
+    position: relative;
+}
+
+.meals-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 0 0 10px;
+}
+
+.meals-items {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+    gap: 15px;
+    justify-content: center;
+}
+
+.meal-item {
+    width: 48%;
+    height: 200px;
+    padding: 15px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.meal-item:hover {
+    cursor: pointer;
+    box-shadow: 0 0 9px 0 rgba(117, 238, 255, 0.6);
+}
+
+.meal-item-title {
+    font-size: 2rem;
+}
+/*endregion*/
+
+
+@media screen and (max-width: 1100px) {
+    .shopping-list-container {
+        flex-direction: column;
+        justify-content: start;
+    }
+
+    .shopping-list, .meals-container {
+        width: 100%;
+        min-height: 60vh;
+    }
+}
+
+.action-buttons {
+    position: absolute;
+    top: 7rem;
+    right: 2rem;
+}
+
+.hide-button,
+.share-button {
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--primary-color);
+    background: var(--secodary-color);
+    padding: .5rem 1.2rem;
+    border-radius: .2rem;
+}
+
+.error-msg {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: red;
+}

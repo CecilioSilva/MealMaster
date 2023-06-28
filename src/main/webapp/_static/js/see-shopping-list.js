@@ -6,9 +6,11 @@ const shoppingListIngredients = document.getElementById("shopping-list-ingredien
 const mealsItems = document.getElementById("meals-items");
 const loader = document.getElementById("loader");
 const shareButton = document.getElementById("share-button");
+const hideButton = document.getElementById("hide-button")
 
 // Globals
 let SHOPPING_LIST_ID;
+let IS_PUBLIC;
 
 function getShoppingListId(){
     // Gets the meal id from search url
@@ -23,29 +25,14 @@ function getShoppingListId(){
     SHOPPING_LIST_ID = shopping_list_id;
 }
 
-function combineObjects(objArr) {
-    const combinedObj = {};
-
-    objArr.forEach(obj => {
-        const { unit, id, ...rest } = obj;
-
-        const key = unit + '_' + id;
-        if (!combinedObj[key]) {
-            combinedObj[key] = { unit, id, ...rest };
-        } else {
-            combinedObj[key].amount += obj.amount;
-        }
-    });
-
-    return Object.values(combinedObj);
-}
-
 function getShoppingListData(){
     // Gets the shopping list from the user
     serverGetRequest(`/shopping-list/${SHOPPING_LIST_ID}`, (data) => {
             // Fill fields with shopping list data
             pageTitle.innerHTML = data.name;
             shoppingListTitle.innerHTML = data.name;
+
+            IS_PUBLIC = data.isPublic;
 
             const meals = [];
             let ingredients = [];
@@ -73,7 +60,7 @@ function getShoppingListData(){
             ingredients.forEach(i => {
                 shoppingListIngredients.innerHTML += `
                     <li class="list-ingredient">
-                      <span class="ingredient-name">${i.name}</span>
+                      <span class="ingredient-name">• ${i.name}</span>
                       <div>
                         <span class="ingredient-amount">${i.amount}</span>
                         <span class="ingredient-unit">${i.unit}</span>
@@ -90,6 +77,8 @@ function getShoppingListData(){
                     </div>
                 `;
             })
+
+            hideButton.classList.toggle("hidden", !IS_PUBLIC);
         },
         (err) => {
             alert(err);
@@ -103,8 +92,45 @@ function getShoppingListData(){
 }
 
 // Event listeners
-shareButton.addEventListener("click", () => {
-    alert("Alert pressed");
+shareButton.addEventListener("click", async () => {
+    try {
+        const response = await fetch(`/api/shopping-list/public/${SHOPPING_LIST_ID}/true`,{
+            method: "PUT",
+            headers: {
+                ...getAuthorizationHeader()
+            }
+        })
+
+        if(!response.ok){
+            throw await response.text();
+        }
+
+    } catch (e) {
+        alert(e);
+        return;
+    }
+
+
+    await navigator.share({
+        url: `/public/shopping-list.html?id=${SHOPPING_LIST_ID}`
+    });
+})
+
+hideButton.addEventListener("click", async () => {
+    try {
+        const response = await fetch(`/api/shopping-list/public/${SHOPPING_LIST_ID}/false`,{
+            method: "PUT",
+            headers: {
+                ...getAuthorizationHeader()
+            }
+        })
+
+    } catch (e) {
+        alert(e);
+        return;
+    }
+
+    window.location.reload();
 })
 
 // Run on load
