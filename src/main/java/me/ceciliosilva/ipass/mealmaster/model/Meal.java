@@ -36,7 +36,7 @@ public class Meal implements Serializable {
 
     public ArrayList<MealIngredient> getIngredients() {
         // Returns the ingredients of the meal
-        return (ArrayList<MealIngredient>) this.ingredients.clone();
+        return new ArrayList<MealIngredient>(this.ingredients);
     }
 
     @Override

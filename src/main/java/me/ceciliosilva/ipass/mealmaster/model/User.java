@@ -84,7 +84,7 @@ public class User implements Serializable, Principal {
     }
 
     public static ArrayList<User> getUsers() {
-        return (ArrayList<User>) users.clone();
+        return new ArrayList<User>(users);
     }
 
     public static boolean registerUser(String name, String email, String password) {
@@ -135,7 +135,7 @@ public class User implements Serializable, Principal {
 
     // region Ingredients
     public ArrayList<Ingredient> getIngredients() {
-        return (ArrayList<Ingredient>) this.ingredients.clone();
+        return new ArrayList<Ingredient>(this.ingredients);
     }
 
     public void addIngredient(Ingredient ingredient) {
@@ -168,7 +168,7 @@ public class User implements Serializable, Principal {
 
     // region Meal
     public ArrayList<Meal> getMeals() {
-        return (ArrayList<Meal>) this.meals.clone();
+        return new ArrayList<Meal>(this.meals);
     }
 
     public void addMeal(Meal meal) {
@@ -202,12 +202,12 @@ public class User implements Serializable, Principal {
 
     // region Shopping lists
     public ArrayList<ShoppingList> getShoppingLists() {
-        return (ArrayList<ShoppingList>) this.shoppingLists.clone();
+        return new ArrayList<ShoppingList>(this.shoppingLists);
     }
 
     public void addShoppingList(ShoppingList list) {
 
-        if(this.shoppingLists == null){
+        if (this.shoppingLists == null) {
             this.shoppingLists = new ArrayList<>();
         }
 

@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meal Master - Shopping list</title>
-  <script src="/_static/js/global.js" defer></script>
-  <script src="/_static/js/see-shopping-list.js" defer></script>
-  <link rel="stylesheet" href="/_static/styles/style.css">
-  <link rel="stylesheet" href="/_static/styles/see-shopping-list.css">
-</head>
-<body>
-<header>
-  <nav class="nav-bar">
-    <a href="/">
-      <img src="/_static/images/logo.svg" alt="Logo" class="nav-logo"/>
-    </a>
-    <ul class="nav-links">
-      <li class="nav-link"><a href="/home.html">Home</a></li>
-    </ul>
-    <div class="nav-actions">
-      <button id="logout-button" onclick="logout()" class="nav-button btn">Logout</button>
-    </div>
-  </nav>
-</header>
-<main class="container">
-  <p id="error-msg" class="error-msg"></p>
-  <p id="status-msg" class="status-msg"></p>
-  <h1 class="page-title" id="shopping-list-name">Shopping-lists</h1>
-  <div class="shopping-list-container hidden" id="shopping-list-container">
-    <div class="shopping-list">
-      <h2 class="shopping-list-title" id="shopping-list-title"></h2>
-      <ul class="shopping-list-ingredients" id="shopping-list-ingredients">
-      </ul>
-    </div>
-    <div class="meals-container">
-      <h3 class="meals-title">Meals</h3>
-      <div class="meals-items" id="meals-items">
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meal Master - Shopping list</title>
+    <script src="/_static/js/global.js" defer></script>
+    <script src="/_static/js/see-shopping-list.js" defer></script>
+    <link rel="stylesheet" href="/_static/styles/style.css" />
+    <link rel="stylesheet" href="/_static/styles/see-shopping-list.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav-bar">
+        <a href="/">
+          <img src="/_static/images/logo.svg" alt="Logo" class="nav-logo" />
+        </a>
+        <ul class="nav-links">
+          <li class="nav-link"><a href="/home.html">Home</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button id="logout-button" onclick="logout()" class="nav-button btn">
+            Logout
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main class="container">
+      <p id="error-msg" class="error-msg"></p>
+      <p id="status-msg" class="status-msg"></p>
+      <h1 class="page-title" id="shopping-list-name">Shopping-lists</h1>
+      <div class="shopping-list-container hidden" id="shopping-list-container">
+        <div class="shopping-list">
+          <h2 class="shopping-list-title" id="shopping-list-title"></h2>
+          <ul
+            class="shopping-list-ingredients"
+            id="shopping-list-ingredients"
+          ></ul>
+        </div>
+        <div class="meals-container">
+          <h3 class="meals-title">Meals</h3>
+          <div class="meals-items" id="meals-items"></div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="action-buttons">
-    <button class="share-button btn" id="share-button">
-      Share
-    </button>
-    <button class="hide-button btn hidden" id="hide-button">
-      Hide
-    </button>
-  </div>
-  <img src="/_static/images/loader.svg" alt="loading-icon" class="loading-icon" id="loader">
-  <a href="/home.html" class="back-btn">Back</a>
-</main>
-<footer class="footer">
-  <p class="copyright">MealMaster - Cecilio Silva Monteiro - 2023</p>
-</footer>
-</body>
+      <div class="action-buttons">
+        <button class="share-button btn" id="share-button">Share</button>
+        <button class="hide-button btn hidden" id="hide-button">Hide</button>
+      </div>
+      <img
+        src="/_static/images/loader.svg"
+        alt="loading-icon"
+        class="loading-icon"
+        id="loader"
+      />
+      <a href="/home.html" class="back-btn">Back</a>
+    </main>
+    <footer class="footer">
+      <p class="copyright">MealMaster - Cecilio Silva Monteiro - 2023</p>
+    </footer>
+  </body>
 </html>

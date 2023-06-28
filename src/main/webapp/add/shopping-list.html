@@ -1,58 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meal Master - Add Shopping-list</title>
-  <script src="/_static/js/global.js" defer></script>
-  <script src="/_static/js/add-shopping-list.js" defer></script>
-  <link rel="stylesheet" href="/_static/styles/style.css">
-  <link rel="stylesheet" href="/_static/styles/add-shopping-list.css">
-</head>
-<body>
-<header>
-  <nav class="nav-bar">
-    <a href="/">
-      <img src="/_static/images/logo.svg" alt="Logo" class="nav-logo"/>
-    </a>
-    <ul class="nav-links">
-      <li class="nav-link"><a href="/home.html">Home</a></li>
-    </ul>
-    <div class="nav-actions">
-      <button id="logout-button" onclick="logout()" class="nav-button btn">Logout</button>
-    </div>
-  </nav>
-</header>
-<main class="container">
-  <p id="error-msg" class="error-msg"></p>
-  <p id="status-msg" class="status-msg"></p>
-  <h1 class="page-title">Add Shopping-list</h1>
-  <div class="meal-form-container">
-    <div class="input-container" id="name-input-container">
-      <label for="name">Name</label>
-      <input name="name" type="text" id="name">
-    </div>
-    <ul class="meal-container" id="meal-container"></ul>
-    <form id="meal-form" class="meal-form">
-      <div class="input-container" id="date-input-container">
-        <label for="date">Date</label>
-        <input type="date" name="date" id="date">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meal Master - Add Shopping-list</title>
+    <script src="/_static/js/global.js" defer></script>
+    <script src="/_static/js/add-shopping-list.js" defer></script>
+    <link rel="stylesheet" href="/_static/styles/style.css" />
+    <link rel="stylesheet" href="/_static/styles/add-shopping-list.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav-bar">
+        <a href="/">
+          <img src="/_static/images/logo.svg" alt="Logo" class="nav-logo" />
+        </a>
+        <ul class="nav-links">
+          <li class="nav-link"><a href="/home.html">Home</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button id="logout-button" onclick="logout()" class="nav-button btn">
+            Logout
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main class="container">
+      <p id="error-msg" class="error-msg"></p>
+      <p id="status-msg" class="status-msg"></p>
+      <h1 class="page-title">Add Shopping-list</h1>
+      <div class="meal-form-container">
+        <div class="input-container" id="name-input-container">
+          <label for="name">Name</label>
+          <input name="name" type="text" id="name" />
+        </div>
+        <ul class="meal-container" id="meal-container"></ul>
+        <form id="meal-form" class="meal-form">
+          <div class="input-container" id="date-input-container">
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date" />
+          </div>
+          <div class="input-container" id="meal-input-container">
+            <label for="meal-select">Meal</label>
+            <select
+              name="meal-select"
+              id="meal-select"
+              class="meal-select"
+            ></select>
+          </div>
+          <input type="submit" value="+" class="submit-button" />
+        </form>
+        <button class="add-button" id="add-button">Save shopping-list</button>
       </div>
-      <div class="input-container" id="meal-input-container">
-        <label for="meal-select">Meal</label>
-        <select name="meal-select" id="meal-select" class="meal-select"></select>
-      </div>
-      <input type="submit" value="+" class="submit-button">
-    </form>
-    <button class="add-button" id="add-button">
-      Save shopping-list
-    </button>
-  </div>
-  <a href="/home.html" class="back-btn">Back</a>
-</main>
-<footer class="footer">
-  <p class="copyright">MealMaster - Cecilio Silva Monteiro - 2023</p>
-</footer>
-</body>
+      <a href="/home.html" class="back-btn">Back</a>
+    </main>
+    <footer class="footer">
+      <p class="copyright">MealMaster - Cecilio Silva Monteiro - 2023</p>
+    </footer>
+  </body>
 </html>

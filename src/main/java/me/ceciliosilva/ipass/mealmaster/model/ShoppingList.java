@@ -1,7 +1,6 @@
 package me.ceciliosilva.ipass.mealmaster.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.*;
 
 public class ShoppingList implements Serializable {
@@ -28,12 +27,11 @@ public class ShoppingList implements Serializable {
     }
 
     public ArrayList<Weekday> getMeals() {
-        return (ArrayList<Weekday>) this.days.clone();
+        return new ArrayList<Weekday>(this.days);
     }
 
     public HashMap<String, Object> toMap() {
         ArrayList<HashMap<String, Object>> list = new ArrayList<>();
-
 
         for (Weekday day : getMeals()) {
             HashMap<String, Object> weekdayMap = new HashMap<>();

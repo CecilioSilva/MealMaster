@@ -1,160 +1,160 @@
 /*region Meal Form*/
 .meal-form {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .meal-form input[type="text"],
-.meal-form input[type="number"]{
-    width: 100%;
-    padding: .5rem 5px;
-    margin-bottom: .5rem;
+.meal-form input[type="number"] {
+  width: 100%;
+  padding: 0.5rem 5px;
+  margin-bottom: 0.5rem;
 }
 
 .meal-form textarea {
-    width: 100%;
-    height: 100%;
-    min-width: 100%;
-    min-height: 150px;
-    margin-bottom: 8px;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 150px;
+  margin-bottom: 8px;
 }
 
 .add-meal-button {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 /*endregion*/
 
 /*region Container*/
 .column-container {
-    position: relative;
-    width: 100%;
-    min-height: 50vh;
-    max-width: 1200px;
+  position: relative;
+  width: 100%;
+  min-height: 50vh;
+  max-width: 1200px;
 
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
 }
 
-@media screen and ( max-width: 800px) {
-    .column-container {
-        flex-direction: column-reverse;
-        min-height: unset;
-    }
+@media screen and (max-width: 800px) {
+  .column-container {
+    flex-direction: column-reverse;
+    min-height: unset;
+  }
 }
 /*endregion*/
 
 /*region Columns*/
 .left-column {
-    width: 50%;
-    height: 500px;
+  width: 50%;
+  height: 500px;
 }
 
 .right-column {
-    width: 50%;
-    height: 500px;
-    position: relative;
+  width: 50%;
+  height: 500px;
+  position: relative;
 }
 
-@media screen and ( max-width: 800px) {
-    .right-column, .left-column {
-        width: 100%;
-        margin: 0 auto;
-    }
-
+@media screen and (max-width: 800px) {
+  .right-column,
+  .left-column {
+    width: 100%;
+    margin: 0 auto;
+  }
 }
 /*endregion*/
 
 /*region Ingredient Form*/
-.ingredients-container{
-    display: flex;
-    flex-direction: column;
-    padding-left: 20px;
-    padding-right: 20px;
+.ingredients-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 /*region Ingredient List*/
 .ingredients-list {
-    margin: 0;
-    padding: 10px 10px 0;
-    background: #f9f9f9;
-    width: 100%;
-    height: 90%;
-    overflow-y: scroll;
+  margin: 0;
+  padding: 10px 10px 0;
+  background: #f9f9f9;
+  width: 100%;
+  height: 90%;
+  overflow-y: scroll;
 }
 
 .ingredient-item {
-    list-style: none;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    padding: 5px 5px;
-    border-radius: 3px;
+  list-style: none;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 5px 5px;
+  border-radius: 3px;
 }
 
-.ingredient-item:nth-child(even){
-    background: #CCC;
+.ingredient-item:nth-child(even) {
+  background: #ccc;
 }
 
 .remove-button {
-    cursor: pointer;
-    background: var(--secodary-color);
-    border: none;
-    border-radius: 4px;
+  cursor: pointer;
+  background: var(--secodary-color);
+  border: none;
+  border-radius: 4px;
 }
 
-.remove-button:hover{
-    filter: brightness(.7);
+.remove-button:hover {
+  filter: brightness(0.7);
 }
 /*endregion*/
 
 /*region Add Ingredient*/
 
 .ingredient-controls {
-    display: flex;
-    padding-top: 10px;
+  display: flex;
+  padding-top: 10px;
 }
 
 .ingredient-form {
-    display: flex;
-    width: 100%;
-    position: relative;
-    gap: 10px;
+  display: flex;
+  width: 100%;
+  position: relative;
+  gap: 10px;
 }
 
 .input-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #amount-input {
-    width: 25%
+  width: 25%;
 }
 
 #amount {
-    width: 100%;
+  width: 100%;
 }
 
-#ingredient-input{
-    width: 55%;
+#ingredient-input {
+  width: 55%;
 }
 
 #unit-input {
-    width: 20%;
+  width: 20%;
 }
 
 .add-ingredient {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }
 
 .input-button-container {
-    display: flex;
-    justify-content: center;
-    align-items: end;
+  display: flex;
+  justify-content: center;
+  align-items: end;
 }
 
 /*endregion*/

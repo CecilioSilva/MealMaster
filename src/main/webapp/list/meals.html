@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meal Master - Meals</title>
-  <script src="/_static/js/global.js" defer></script>
-  <script src="/_static/js/list-meals.js" defer></script>
-  <link rel="stylesheet" href="/_static/styles/style.css">
-</head>
-<body>
-<header>
-  <nav class="nav-bar">
-    <a href="/">
-      <img src="/_static/images/logo.svg" alt="Logo" class="nav-logo"/>
-    </a>
-    <ul class="nav-links">
-      <li class="nav-link"><a href="/home.html">Home</a></li>
-    </ul>
-    <div class="nav-actions">
-      <button id="logout-button" onclick="logout()" class="nav-button btn">Logout</button>
-    </div>
-  </nav>
-</header>
-<main class="container">
-  <p id="error-msg" class="error-msg"></p>
-  <p id="status-msg" class="status-msg"></p>
-  <h1 class="page-title">Meals</h1>
-  <div id="meals-container" class="item-container">
-    <img src="/_static/images/loader.svg" alt="loading-icon" class="loading-icon" id="loader">
-  </div>
-  <a href="/home.html" class="back-btn">Back</a>
-</main>
-<footer class="footer">
-  <p class="copyright">MealMaster - Cecilio Silva Monteiro - 2023</p>
-</footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meal Master - Meals</title>
+    <script src="/_static/js/global.js" defer></script>
+    <script src="/_static/js/list-meals.js" defer></script>
+    <link rel="stylesheet" href="/_static/styles/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav-bar">
+        <a href="/">
+          <img src="/_static/images/logo.svg" alt="Logo" class="nav-logo" />
+        </a>
+        <ul class="nav-links">
+          <li class="nav-link"><a href="/home.html">Home</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button id="logout-button" onclick="logout()" class="nav-button btn">
+            Logout
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main class="container">
+      <p id="error-msg" class="error-msg"></p>
+      <p id="status-msg" class="status-msg"></p>
+      <h1 class="page-title">Meals</h1>
+      <div id="meals-container" class="item-container">
+        <img
+          src="/_static/images/loader.svg"
+          alt="loading-icon"
+          class="loading-icon"
+          id="loader"
+        />
+      </div>
+      <a href="/home.html" class="back-btn">Back</a>
+    </main>
+    <footer class="footer">
+      <p class="copyright">MealMaster - Cecilio Silva Monteiro - 2023</p>
+    </footer>
+  </body>
 </html>

@@ -1,91 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meal Master - Add Meal</title>
-  <script src="/_static/js/global.js" defer></script>
-  <script src="/_static/js/add-meal.js" defer></script>
-  <link rel="stylesheet" href="/_static/styles/style.css">
-  <link rel="stylesheet" href="/_static/styles/add-meal.css">
-</head>
-<body>
-<header>
-  <nav class="nav-bar">
-    <a href="/">
-      <img src="/_static/images/logo.svg" alt="Logo" class="nav-logo"/>
-    </a>
-    <ul class="nav-links">
-      <li class="nav-link"><a href="/home.html">Home</a></li>
-    </ul>
-    <div class="nav-actions">
-      <button id="logout-button" onclick="logout()" class="nav-button btn">Logout</button>
-    </div>
-  </nav>
-</header>
-<main class="container">
-  <p id="error-msg" class="error-msg"></p>
-  <p id="status-msg" class="status-msg"></p>
-  <h1 class="page-title">Add Meal</h1>
-  <div class="column-container">
-    <div class="left-column">
-      <form id="meal-form" class="meal-form">
-        <label for="name">Name</label>
-        <input
-                type="text"
-                name="name"
-                id="name"
-        />
-        <label for="description">Description</label>
-        <textarea name="description" id="description"></textarea>
-        <label for="image">Image</label>
-        <input
-                type="text"
-                name="image"
-                id="image"
-                value="https://placehold.co/250x250"
-        />
-        <label for="people">Number of people</label>
-        <input
-                type="number"
-                name="people"
-                id="people"
-        />
-        <input type="button" value="Add Meal" id="add-button" class="add-meal-button" />
-      </form>
-    </div>
-    <div class="right-column">
-      <ul class="ingredients-list" id="ingredients-list">
-      </ul>
-      <div class="ingredient-controls">
-        <form class="ingredient-form" id="ingredient-form">
-          <div class="input-container" id="ingredient-input">
-            <label for="ingredient">Ingredient</label>
-            <select name="ingredient" id="ingredient">
-            </select>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meal Master - Add Meal</title>
+    <script src="/_static/js/global.js" defer></script>
+    <script src="/_static/js/add-meal.js" defer></script>
+    <link rel="stylesheet" href="/_static/styles/style.css" />
+    <link rel="stylesheet" href="/_static/styles/add-meal.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav-bar">
+        <a href="/">
+          <img src="/_static/images/logo.svg" alt="Logo" class="nav-logo" />
+        </a>
+        <ul class="nav-links">
+          <li class="nav-link"><a href="/home.html">Home</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button id="logout-button" onclick="logout()" class="nav-button btn">
+            Logout
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main class="container">
+      <p id="error-msg" class="error-msg"></p>
+      <p id="status-msg" class="status-msg"></p>
+      <h1 class="page-title">Add Meal</h1>
+      <div class="column-container">
+        <div class="left-column">
+          <form id="meal-form" class="meal-form">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" />
+            <label for="description">Description</label>
+            <textarea name="description" id="description"></textarea>
+            <label for="image">Image</label>
+            <input
+              type="text"
+              name="image"
+              id="image"
+              value="https://placehold.co/250x250"
+            />
+            <label for="people">Number of people</label>
+            <input type="number" name="people" id="people" />
+            <input
+              type="button"
+              value="Add Meal"
+              id="add-button"
+              class="add-meal-button"
+            />
+          </form>
+        </div>
+        <div class="right-column">
+          <ul class="ingredients-list" id="ingredients-list"></ul>
+          <div class="ingredient-controls">
+            <form class="ingredient-form" id="ingredient-form">
+              <div class="input-container" id="ingredient-input">
+                <label for="ingredient">Ingredient</label>
+                <select name="ingredient" id="ingredient"></select>
+              </div>
+              <div class="input-container" id="amount-input">
+                <label for="amount">Amount</label>
+                <input type="number" name="amount" id="amount" />
+              </div>
+              <div class="input-container" id="unit-input">
+                <label for="unit">Unit</label>
+                <select name="unit" id="unit"></select>
+              </div>
+              <div class="input-button-container">
+                <input
+                  type="submit"
+                  value="+"
+                  id="add-ingredient"
+                  class="add-ingredient"
+                />
+              </div>
+            </form>
           </div>
-          <div class="input-container" id="amount-input">
-            <label for="amount">Amount</label>
-            <input type="number" name="amount" id="amount">
-          </div>
-          <div class="input-container" id="unit-input">
-            <label for="unit">Unit</label>
-            <select name="unit" id="unit">
-
-            </select>
-          </div>
-          <div class="input-button-container">
-            <input type="submit" value="+" id="add-ingredient" class="add-ingredient" />
-          </div>
-        </form>
+        </div>
       </div>
-    </div>
-  </div>
-  <a href="/home.html" class="back-btn">Back</a>
-</main>
-<footer class="footer">
-  <p class="copyright">MealMaster - Cecilio Silva Monteiro - 2023</p>
-</footer>
-</body>
+      <a href="/home.html" class="back-btn">Back</a>
+    </main>
+    <footer class="footer">
+      <p class="copyright">MealMaster - Cecilio Silva Monteiro - 2023</p>
+    </footer>
+  </body>
 </html>
