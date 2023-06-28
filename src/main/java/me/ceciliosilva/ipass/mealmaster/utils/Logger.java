@@ -15,31 +15,31 @@ public class Logger {
     // The minimum level to log
     private static final int logLevel = 10;
 
-    private static void log(String level, String location, String... msg){
+    private static void log(String level, String location, String... msg) {
         String message = StringUtils.join(Arrays.asList(msg), ' ');
         System.out.printf("[%s] - %s: (%s) %s%n", LocalDateTime.now(), level, location, message);
     }
 
-    public static void debug(String location, String... msg){
-        if(logLevel <= 10){
+    public static void debug(String location, String... msg) {
+        if (logLevel <= 10) {
             log("DEBUG", location, msg);
         }
     }
 
-    public static void info(String location, String... msg){
-        if(logLevel <= 20){
+    public static void info(String location, String... msg) {
+        if (logLevel <= 20) {
             log("INFO", location, msg);
         }
     }
 
-    public static void warning(String location, String... msg){
-        if(logLevel <= 30){
+    public static void warning(String location, String... msg) {
+        if (logLevel <= 30) {
             log("WARNING", location, msg);
         }
     }
 
-    public static void error(String location, String... msg){
-        if(logLevel <= 40){
+    public static void error(String location, String... msg) {
+        if (logLevel <= 40) {
             log("ERROR", location, msg);
         }
     }

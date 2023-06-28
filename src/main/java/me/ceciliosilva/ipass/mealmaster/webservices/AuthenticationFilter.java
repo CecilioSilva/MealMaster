@@ -22,7 +22,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     public void filter(ContainerRequestContext requestCtx) {
         // Checks if user is logged in and valid
 
-        boolean isSecure = requestCtx.getSecurityContext().isSecure();
         String scheme = requestCtx.getUriInfo().getRequestUri().getScheme();
 
         // Users are treated as guests, unless a valid JWT is provided

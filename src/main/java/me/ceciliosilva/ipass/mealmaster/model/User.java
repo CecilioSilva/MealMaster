@@ -10,6 +10,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Objects;
 
+@SuppressWarnings("unused")
 public class User implements Serializable, Principal {
     static final long serialVersionUID = 1L;
     private static String saveFileName = "users.obj";

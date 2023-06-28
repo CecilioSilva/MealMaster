@@ -21,7 +21,7 @@ public class ShoppingListResource {
     @GET
     @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllShoppingLists(@Context SecurityContext sc){
+    public Response getAllShoppingLists(@Context SecurityContext sc) {
         // Route for getting all users shopping lists
 
         // Gets the user from the security context
@@ -65,13 +65,13 @@ public class ShoppingListResource {
 
                 // Adds the meal to the Shopping-list
                 JsonArray days = requestBody.getJsonArray("days");
-                for (JsonValue day: days) {
+                for (JsonValue day : days) {
                     JsonObject jsn = day.asJsonObject();
                     LocalDate date = LocalDate.parse(jsn.getString("date"));
                     String id = jsn.getString("id");
                     Meal meal = current.getMealById(id);
 
-                    if(meal != null){
+                    if (meal != null) {
                         Weekday weekday = new Weekday(date, meal);
                         shoppingList.addWeekMeal(weekday);
                     }
@@ -152,7 +152,7 @@ public class ShoppingListResource {
             // Gets the shopping list from user
             ShoppingList shoppingList = User.searchShoppingList(id);
 
-            if(shoppingList == null){
+            if (shoppingList == null) {
                 return ApiHelper.simpleMsgResponse(Response.Status.BAD_REQUEST, "Shopping list does not exit");
             }
 
@@ -168,9 +168,9 @@ public class ShoppingListResource {
     @Path("public/{id}/{state}")
     @RolesAllowed("user")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response setShoppingListPublic(@Context SecurityContext sc, @PathParam("id") String id, @PathParam("state") boolean state){
+    public Response setShoppingListPublic(@Context SecurityContext sc, @PathParam("id") String id,
+            @PathParam("state") boolean state) {
         // Route for setting a shopping list to public
-
 
         // Gets the user from the security context
         if (sc.getUserPrincipal() instanceof User current) {
@@ -178,7 +178,7 @@ public class ShoppingListResource {
                 // Gets the shopping list from user
                 ShoppingList shoppingList = current.getShoppingListById(id);
 
-                if(shoppingList != null){
+                if (shoppingList != null) {
                     shoppingList.setPublic(state);
                     return ApiHelper.simpleMsgResponse(Response.Status.OK, "success");
                 }

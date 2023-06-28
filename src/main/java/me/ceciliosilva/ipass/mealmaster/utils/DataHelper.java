@@ -9,7 +9,8 @@ public class DataHelper {
     // The default save directory path
     private static final String saveDirPath = "./savedata";
 
-    public static <T> T loadObject(String saveFileName, T defaultValue){
+    @SuppressWarnings("unchecked")
+    public static <T> T loadObject(String saveFileName, T defaultValue) {
         Logger.info("DataHelper", "Loading object at:", saveFileName);
 
         try {
@@ -20,26 +21,26 @@ public class DataHelper {
 
             // Casts the read object as the type of the defaultValue
             return (T) ois.readObject();
-        } catch (ClassNotFoundException | IOException e){
-            Logger.error("DataHelper","reading object", e.toString());
+        } catch (ClassNotFoundException | IOException e) {
+            Logger.error("DataHelper", "reading object", e.toString());
 
             // If there is an error return the default value
             return defaultValue;
         }
     }
 
-    public static void saveObject(String saveFileName, Object objectToSave){
+    public static void saveObject(String saveFileName, Object objectToSave) {
 
         // Gets the directory where the object should be saved
         Path saveDir = Path.of(saveDirPath);
 
-        try  {
+        try {
             // If the directories do not exist create them recursively
-            if(!Files.exists(saveDir)){
+            if (!Files.exists(saveDir)) {
                 Files.createDirectories(saveDir);
             }
-        } catch (IOException e){
-            Logger.error("DataHelper","creating folders at:", e.toString());
+        } catch (IOException e) {
+            Logger.error("DataHelper", "creating folders at:", e.toString());
             return;
         }
 
@@ -53,7 +54,7 @@ public class DataHelper {
 
             // Saves the object at the selected path
             oos.writeObject(objectToSave);
-        } catch (IOException e){
+        } catch (IOException e) {
             Logger.error("DataHelper", "saving object:", e.toString());
         }
 
