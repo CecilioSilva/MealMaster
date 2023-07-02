@@ -307,7 +307,7 @@ public class User implements Serializable, Principal {
         Meal brownie = new Meal(
                 "Best Homemade Brownie",
                 "https://lh5.ggpht.com/RIu0OGCdq4C8SxHvabkWbP7ZElMX7wiUSfBNmvQwvkP2wzlJMS1hMzIoDRwmLOB7OMoVbPkvKxrtG7_gIW3j=w640-h640-c-rw-v1-e365",
-                9,
+                4,
                 """
                         1. To prepare the pan, butter a 9x9 square pan and line the bottom with parchment paper. Butter the bottom again and lightly dust the pan with chocolate or cocoa powder.
                         

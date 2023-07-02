@@ -221,7 +221,13 @@ input[type="button"]:hover {
 
 .item-title {
   margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 218px;
+  overflow: hidden;
 }
+
+
 
 .item-title:hover {
   text-decoration: underline;

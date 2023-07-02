@@ -66,6 +66,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 2px solid #000f43;
 }
 
 .meal-item:hover {
@@ -75,6 +76,9 @@
 
 .meal-item-title {
   font-size: 2rem;
+  text-align: center;
+  background-color: #ffffffbd;
+  border-radius: 15px;
 }
 /*endregion*/
 

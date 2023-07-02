@@ -243,4 +243,14 @@ public class UserTest {
         assertEquals(shoppingList.getId(), getShoppingList.getId());
     }
 
+    @Test void userSeeding(){
+        // Test if the user got seeded
+        User.registerUser("John Doe", "john@example.com", "Testing123", true);
+
+        User newUser = User.getUserByEmail("john@example.com");
+        assert newUser != null;
+        assertTrue(newUser.getIngredients().size() > 1);
+
+    }
+
 }
