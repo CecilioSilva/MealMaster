@@ -7,7 +7,11 @@ import java.nio.file.Path;
 public class DataHelper {
 
     // The default save directory path
-    private static final String saveDirPath = "/home";
+    private static String saveDirPath = "/home";
+
+    public static void setSaveDirPath(String path){
+        saveDirPath = path;
+    }
 
     @SuppressWarnings("unchecked")
     public static <T> T loadObject(String saveFileName, T defaultValue) {

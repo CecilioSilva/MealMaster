@@ -1,5 +1,6 @@
 package me.ceciliosilva.ipass.mealmaster.tests;
 
+import me.ceciliosilva.ipass.mealmaster.utils.DataHelper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,7 @@ public class UserTest {
 
     @BeforeAll
     public static void reset() {
+        DataHelper.setSaveDirPath("./savedata");
         User.setSaveFileName("test-users.obj");
         User.clearUsers();
     }
@@ -34,7 +36,7 @@ public class UserTest {
     @BeforeEach
     public void setup() {
         User.clearUsers();
-        User.registerUser("test", "test@gmail.com", "test");
+        User.registerUser("test", "test@gmail.com", "test", false);
         user = User.getUserByEmail("test@gmail.com");
 
         ingredient = new Ingredient("ingredient", "test ingredient", "https://www.test.com");
@@ -87,14 +89,14 @@ public class UserTest {
     @Test
     public void registerUser() {
         // Tests if the user is registered
-        User.registerUser("test2", "test2@gmail.com", "test2");
+        User.registerUser("test2", "test2@gmail.com", "test2", false);
         assertEquals(2, User.getUsers().size());
     }
 
     @Test
     public void registerExistingUser() {
         // Tests if the user is not registered if it already exists
-        User.registerUser("test", "test@gmail.com", "test");
+        User.registerUser("test", "test@gmail.com", "test", false);
 
         assertEquals(1, User.getUsers().size());
     }

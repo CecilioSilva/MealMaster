@@ -91,7 +91,7 @@ public class User implements Serializable, Principal {
         return new ArrayList<User>(users);
     }
 
-    public static boolean registerUser(String name, String email, String password) {
+    public static boolean registerUser(String name, String email, String password, boolean seed) {
         Logger.info("User", "Registering user - ", email);
         loadUsers();
         User newUser = new User(name, email, password, new ArrayList<>());
@@ -103,7 +103,9 @@ public class User implements Serializable, Principal {
         }
 
         // Seed the new user with a dummy recipe
-        newUser.seed();
+        if(seed){
+            newUser.seed();
+        }
 
         // If the user doesn't exist add it to the users array and save the array
         users.add(newUser);
@@ -334,7 +336,7 @@ public class User implements Serializable, Principal {
 
         // region Shopping-list
         ShoppingList shoppingList = new ShoppingList(false, "Deserts");
-        Weekday tomorrow = new Weekday(LocalDate.now().plus(Duration.ofDays(1)), brownie);
+        Weekday tomorrow = new Weekday(LocalDate.now(), brownie);
         shoppingList.addWeekMeal(tomorrow);
 
         this.addShoppingList(shoppingList);

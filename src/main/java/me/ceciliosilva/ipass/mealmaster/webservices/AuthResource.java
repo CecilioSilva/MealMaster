@@ -149,7 +149,7 @@ public class AuthResource {
             }
 
             // Tries to register user
-            boolean success = User.registerUser(name, email, password);
+            boolean success = User.registerUser(name, email, password, true);
 
             if (!success) {
                 // If registering fails user already exists
